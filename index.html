@@ -60,22 +60,91 @@
     max-width:1120px;margin:0 auto;padding:16px 32px;
     display:flex;align-items:center;justify-content:space-between;
   }
+  .nav-left{display:flex;align-items:center;gap:16px;}
   .nav-brand{
     display:flex;align-items:center;gap:10px;
     font-family:var(--serif);font-weight:700;font-size:19px;
     color:var(--cream);letter-spacing:0.5px;
   }
   .nav-mark{width:26px;height:26px;flex-shrink:0;border-radius:50%;object-fit:cover;}
+
+  /* SEARCH TRIGGER */
+  .nav-search-btn{
+    display:flex;align-items:center;justify-content:center;
+    width:34px;height:34px;flex-shrink:0;
+    background:transparent;border:none;padding:0;
+    cursor:pointer;transition:transform .15s ease,opacity .2s ease;
+    opacity:0.85;
+  }
+  .nav-search-btn svg{width:19px;height:19px;stroke:var(--gold-light);stroke-width:1.8;fill:none;}
+  .nav-search-btn:hover{opacity:1;}
+  .nav-search-btn:hover svg{stroke:var(--gold);}
+  .nav-search-btn:active{transform:scale(0.92);}
+  @media(max-width:760px){
+    .nav-search-btn{
+      position:fixed;top:16px;right:72px;z-index:1100;
+      width:40px;height:40px;
+    }
+  }
   .nav-links{display:flex;gap:30px;font-size:13px;letter-spacing:0.4px;color:var(--cream-2);}
   .nav-links a{opacity:0.82;transition:opacity .2s;}
   .nav-links a:hover{opacity:1;color:var(--gold-light);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
   .nav-cta{
     font-size:12.5px;font-weight:600;letter-spacing:0.5px;
     border:1px solid var(--gold);color:var(--gold-light);
     padding:9px 18px;border-radius:2px;transition:background .2s,color .2s;
   }
   .nav-cta:hover{background:var(--gold);color:var(--ink);}
-  @media(max-width:760px){.nav-links{display:none;}}
+  @media(max-width:760px){.nav-links{display:none;} .nav-cta{display:none;}}
+
+  /* ---------- Mobile hamburger + slide-in nav ---------- */
+  .menu-btn{
+    display:none;
+    position:fixed;top:16px;right:20px;
+    width:44px;height:44px;
+    flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    background:transparent;border:none;cursor:pointer;z-index:1100;
+  }
+  @media(max-width:760px){.menu-btn{display:flex;}}
+  .menu-btn span{
+    width:24px;height:2px;background:var(--gold-light);border-radius:2px;
+    transition:transform .3s ease,opacity .3s ease;
+  }
+  .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .nav-overlay{
+    position:fixed;inset:0;background:rgba(12,13,16,0.45);
+    opacity:0;pointer-events:none;transition:opacity .35s ease;z-index:1000;
+  }
+  .nav-overlay.open{opacity:1;pointer-events:auto;}
+
+  .nav-panel{
+    position:fixed;top:0;right:0;height:100%;width:82%;max-width:340px;
+    background:#ffffff;box-shadow:-8px 0 32px rgba(0,0,0,0.18);
+    transform:translateX(100%);transition:transform .4s cubic-bezier(0.22,1,0.36,1);
+    z-index:1050;display:flex;flex-direction:column;padding:28px 8px;
+  }
+  .nav-panel.open{transform:translateX(0);}
+  .mobile-nav-list{list-style:none;margin-top:56px;padding:0 12px;}
+  .mobile-nav-list li{border-bottom:1px solid #eeece5;}
+  .mobile-nav-list li:last-child{border-bottom:none;}
+  .mobile-nav-list a{
+    display:flex;align-items:center;min-height:52px;padding:0 12px;
+    font-family:var(--sans);font-weight:500;font-size:16.5px;letter-spacing:0.2px;
+    color:#1c1c1c;text-decoration:none;border-radius:8px;
+    transition:background .2s ease,color .2s ease,padding-left .2s ease;
+  }
+  .mobile-nav-list a:hover,.mobile-nav-list a:focus-visible{
+    background:#faf8f2;color:var(--gold);padding-left:18px;
+  }
+  .mobile-nav-list a:active{background:#f4f1ea;}
+
+  @media (prefers-reduced-motion: reduce){
+    .nav-panel,.nav-overlay,.menu-btn span,.mobile-nav-list a{transition:none !important;}
+  }
 
   /* HERO */
   .hero{
@@ -265,9 +334,94 @@
   .footer-col h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
   .footer-col a{display:block;font-size:13.5px;color:var(--cream-2);margin-bottom:10px;opacity:0.88;transition:opacity .2s;}
   .footer-col a:hover{opacity:1;color:var(--gold-light);}
+  .footer-social{
+    display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+    padding:32px 0;border-bottom:1px solid rgba(245,241,232,0.12);
+  }
+  .footer-social a{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:50%;
+    border:1px solid rgba(212,175,90,0.5);
+    color:var(--gold-light);transition:background .2s,border-color .2s;
+  }
+  .footer-social a:hover{background:rgba(212,175,90,0.12);border-color:var(--gold-light);}
+  .footer-social svg{width:16px;height:16px;fill:currentColor;}
   .footer-bottom{
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
     padding-top:26px;font-size:11.5px;color:var(--muted);
+  }
+
+  /* ---------- SEARCH OVERLAY ---------- */
+  .search-overlay{
+    position:fixed;inset:0;z-index:1200;
+    background:rgba(12,13,16,0.72);backdrop-filter:blur(4px);
+    opacity:0;pointer-events:none;transition:opacity .28s ease;
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:80px 20px 20px;overflow-y:auto;
+  }
+  .search-overlay.open{opacity:1;pointer-events:auto;}
+  .search-modal{
+    width:100%;max-width:600px;
+    background:var(--navy);border:1px solid rgba(201,162,39,0.35);
+    border-radius:10px;box-shadow:0 30px 70px -20px rgba(0,0,0,0.6);
+    transform:translateY(-16px) scale(0.98);opacity:0;
+    transition:transform .32s cubic-bezier(0.22,1,0.36,1),opacity .28s ease;
+    overflow:hidden;
+  }
+  .search-overlay.open .search-modal{transform:translateY(0) scale(1);opacity:1;}
+  .search-field-row{
+    display:flex;align-items:center;gap:12px;
+    padding:18px 20px;border-bottom:1px solid rgba(245,241,232,0.1);
+  }
+  .search-field-row svg{width:18px;height:18px;stroke:var(--gold-light);stroke-width:2;fill:none;flex-shrink:0;}
+  .search-input{
+    flex:1;background:transparent;border:none;outline:none;
+    font-family:var(--sans);font-size:16px;color:var(--cream);
+    caret-color:var(--gold-light);
+  }
+  .search-input::placeholder{color:var(--muted);}
+  .search-close-btn{
+    background:transparent;border:none;cursor:pointer;
+    width:26px;height:26px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;transition:background .2s ease;
+  }
+  .search-close-btn:hover{background:rgba(245,241,232,0.08);}
+  .search-close-btn svg{width:14px;height:14px;stroke:var(--muted);stroke-width:2;fill:none;}
+  .search-results{max-height:min(58vh,440px);overflow-y:auto;padding:8px;}
+  .search-result{
+    display:flex;flex-direction:column;gap:3px;
+    padding:11px 14px;border-radius:6px;cursor:pointer;
+    transition:background .15s ease;
+  }
+  .search-result:hover,.search-result.active{background:rgba(201,162,39,0.14);}
+  .search-result-top{display:flex;align-items:center;gap:10px;}
+  .search-result-title{font-family:var(--serif);font-weight:700;font-size:16px;color:var(--cream);}
+  .search-result-type{
+    font-size:9.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600;
+    color:var(--gold-light);border:1px solid rgba(201,162,39,0.4);
+    border-radius:20px;padding:2px 8px;flex-shrink:0;
+  }
+  .search-result-desc{font-size:12.5px;color:var(--muted);line-height:1.5;}
+  .search-result mark{background:var(--gold);color:var(--ink);border-radius:2px;padding:0 1px;}
+  .search-empty,.search-hint{
+    padding:34px 20px;text-align:center;color:var(--muted);font-size:13.5px;line-height:1.6;
+  }
+  .search-footer-hint{
+    display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+    padding:12px 20px;border-top:1px solid rgba(245,241,232,0.1);
+    font-size:11px;color:var(--muted);
+  }
+  .search-footer-hint kbd{
+    background:rgba(245,241,232,0.08);border:1px solid rgba(245,241,232,0.16);
+    border-radius:4px;padding:1px 6px;font-family:var(--sans);font-size:10.5px;color:var(--cream-2);
+  }
+  @media(max-width:640px){
+    .search-overlay{padding:60px 12px 12px;}
+    .search-result-desc{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .search-overlay,.search-modal{transition:none !important;}
   }
 </style>
 </head>
@@ -286,9 +440,56 @@
       <a href="#podcast">Podcast</a>
       <a href="https://linktr.ee/shadracktloboro">Connect</a>
     </div>
-    <a class="nav-cta" href="https://payhip.com/shadracktloboro/collection/all">Shop the Store</a>
+    <div class="nav-right">
+      <a class="nav-cta" href="https://payhip.com/shadracktloboro/collection/all">Shop the Store</a>
+      <button class="nav-search-btn" id="searchOpenBtn" type="button" aria-label="Search the site" aria-haspopup="dialog" aria-controls="searchOverlay">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M21 21l-4.3-4.3"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </nav>
+
+<button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
+  <span></span><span></span><span></span>
+</button>
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-panel" id="navPanel" aria-hidden="true">
+  <ul class="mobile-nav-list">
+    <li><a href="#">Home</a></li>
+    <li><a href="https://payhip.com/shadracktloboro/collection/all">Shop</a></li>
+    <li><a href="https://payhip.com/shadracktloboro/about-us">About Us</a></li>
+    <li><a href="https://open.spotify.com/show/05zgQZFUFPz5BL1H7dE4X8?si=26294582dce84797">Listen to the Podcast</a></li>
+    <li><a href="https://payhip.com/shadracktloboro/blog/news/who-is-shadrack-tloboro">Blogs</a></li>
+    <li><a href="https://payhip.com/shadracktloboro/faqs">FAQs</a></li>
+    <li><a href="https://payhip.com/shadracktloboro/contact-us">Contact Us</a></li>
+  </ul>
+</nav>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Site search">
+  <div class="search-modal">
+    <div class="search-field-row">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M21 21l-4.3-4.3"></path>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search books, podcasts, pages..." role="combobox" aria-expanded="false" aria-controls="searchResults" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+      <button class="search-close-btn" id="searchCloseBtn" type="button" aria-label="Close search">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"></path><path d="M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox" aria-label="Search results"></div>
+    <div class="search-footer-hint">
+      <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> Navigate</span>
+      <span><kbd>Enter</kbd> Select</span>
+      <span><kbd>Esc</kbd> Close</span>
+    </div>
+  </div>
+</div>
 
 <header class="hero">
   <div class="ribbon"></div>
@@ -361,7 +562,9 @@
   <div class="strip-inner">
     <div class="strip-item">
       <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="#e3c565" stroke-width="1.4">
-        <path d="M12 6.5c-1.5-1.2-3.6-1.5-5.5-1V17c1.9-.5 4-.2 5.5 1M12 6.5c1.5-1.2 3.6-1.5 5.5-1V17c-1.9-.5-4-.2-5.5 1M12 6.5V18" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 7.2c-1.7-1.5-4-1.9-6.3-1.5-.3.05-.5.3-.5.6v11c0 .4.35.65.7.6 2.1-.35 4.2 0 6.1 1.6 1.9-1.6 4-1.95 6.1-1.6.35.05.7-.2.7-.6v-11c0-.3-.2-.55-.5-.6-2.3-.4-4.6 0-6.3 1.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 7.2V19" stroke-linecap="round"/>
+        <path d="M8 9.3c1 .1 2 .4 2.8 1M8 12c1 .1 2 .4 2.8 1" stroke-linecap="round"/>
       </svg>
       <div class="strip-num">3</div>
       <div class="strip-label">Titles</div>
@@ -415,7 +618,7 @@
       <div class="podcast-eyebrow">The Podcast</div>
       <h3>State of Mind with Shadrack Tloboro</h3>
       <p>Conversations on growth, discipline, and rising above modern struggle — the ideas behind the books, unpacked out loud.</p>
-      <a class="btn-ghost" href="https://linktr.ee/shadracktloboro">Listen Now</a>
+      <a class="btn-ghost" href="https://open.spotify.com/show/05zgQZFUFPz5BL1H7dE4X8?si=26294582dce84797" target="_blank" rel="noopener">Listen Now</a>
     </div>
   </div>
 </section>
@@ -435,17 +638,300 @@
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
-        <a href="https://payhip.com/shadracktloboro/collection/all">Payhip Store</a>
+        <a href="https://payhip.com/shadracktloboro/collection/all">Store</a>
         <a href="https://linktr.ee/shadracktloboro">All Links</a>
         <a href="mailto:shadracktloboro@proton.me">Email</a>
       </div>
     </div>
+    <div class="footer-social">
+      <a href="https://facebook.com/shadracktloboro" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.25-1.5 1.55-1.5H16.5V4.3c-.27-.04-1.2-.12-2.28-.12-2.26 0-3.8 1.38-3.8 3.9V10.5H8v3h2.42V21h3.08z"/></svg>
+      </a>
+      <a href="https://instagram.com/shadracktloboro" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 8.7a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6zm0 5.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM16 3H8a5 5 0 0 0-5 5v8a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V8a5 5 0 0 0-5-5zm3.8 13a3.8 3.8 0 0 1-3.8 3.8H8A3.8 3.8 0 0 1 4.2 16V8A3.8 3.8 0 0 1 8 4.2h8A3.8 3.8 0 0 1 19.8 8v8zM16.9 6.1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+      </a>
+      <a href="https://x.com/shadracktloboro" aria-label="X (Twitter)" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://youtube.com/@shadracktloboro" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a2.999 2.999 0 0 0-2.112-2.121C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.386.52A2.999 2.999 0 0 0 .502 6.186 31.26 31.26 0 0 0 0 12a31.26 31.26 0 0 0 .502 5.814 2.999 2.999 0 0 0 2.112 2.121c1.881.52 9.386.52 9.386.52s7.505 0 9.386-.52a2.999 2.999 0 0 0 2.112-2.121A31.26 31.26 0 0 0 24 12a31.26 31.26 0 0 0-.502-5.814zM9.545 15.568V8.432L15.818 12z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@shadracktloboro" aria-label="TikTok" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M16.2 3h-3v13.1a2.6 2.6 0 1 1-1.9-2.5v-3.1a5.7 5.7 0 1 0 4.9 5.6V9.4a7.5 7.5 0 0 0 4.3 1.4V7.8a4.4 4.4 0 0 1-4.3-4.4V3z"/></svg>
+      </a>
+    </div>
     <div class="footer-bottom">
-      <span>© Beyond Pages · Shadrack Tloboro</span>
+      <span>© 2026 Beyond Pages · Shadrack Tloboro</span>
       <span>Built for readers ready to act.</span>
     </div>
   </div>
 </footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navPanel = document.getElementById('navPanel');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function openMenu(){
+    navPanel.classList.add('open');
+    navOverlay.classList.add('open');
+    navPanel.setAttribute('aria-hidden','false');
+    menuBtn.setAttribute('aria-expanded','true');
+    menuBtn.setAttribute('aria-label','Close menu');
+    document.body.style.overflow='hidden';
+  }
+  function closeMenu(){
+    navPanel.classList.remove('open');
+    navOverlay.classList.remove('open');
+    navPanel.setAttribute('aria-hidden','true');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.setAttribute('aria-label','Open menu');
+    document.body.style.overflow='';
+  }
+  menuBtn.addEventListener('click', () => {
+    navPanel.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  navOverlay.addEventListener('click', closeMenu);
+  navPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && navPanel.classList.contains('open')) closeMenu();
+  });
+
+  /* ================= SITE SEARCH ================= */
+  (function(){
+    const index = [
+      { title:"Home", type:"Page", desc:"Beyond Pages — books that turn insight into action, one deliberate page at a time.", url:"#__top" },
+      { title:"Books", type:"Section", desc:"Featured titles — from insight to impact. Practical guidance for growth, purpose, and rising above modern struggle.", url:"#books" },
+      { title:"Pressure Creates Diamonds", type:"Book", desc:"Book by Shadrack Tloboro — $14.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/58dUi" },
+      { title:"Elevate Your Life", type:"Book", desc:"Book by Shadrack Tloboro — $12.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/lyqxg" },
+      { title:"Breakthrough Society", type:"Book", desc:"Book by Shadrack Tloboro — $14.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/vgIsf" },
+      { title:"Browse the Full Catalog", type:"Page", desc:"Shop all books in the Beyond Pages collection on Payhip.", url:"https://payhip.com/shadracktloboro/collection/all" },
+      { title:"Shop the Store", type:"Page", desc:"Shop the Beyond Pages store — books and more.", url:"https://payhip.com/shadracktloboro/collection/all" },
+      { title:"Mission", type:"Section", desc:"Written to Be Lived — Beyond Pages exists for readers who are done consuming advice and ready to act on it.", url:"#mission" },
+      { title:"About the Author", type:"Section", desc:"Shadrack Tloboro — Author, Speaker, Mentor. Dedicated to helping readers unlock their potential and create a life of meaning.", url:"#about" },
+      { title:"About Us", type:"Page", desc:"Learn more about Beyond Pages and author Shadrack Tloboro.", url:"https://payhip.com/shadracktloboro/about-us" },
+      { title:"Podcast", type:"Section", desc:"State of Mind with Shadrack Tloboro — conversations on growth, discipline, and rising above modern struggle.", url:"#podcast" },
+      { title:"Listen to the Podcast", type:"Link", desc:"Listen to State of Mind with Shadrack Tloboro on Spotify.", url:"https://open.spotify.com/show/05zgQZFUFPz5BL1H7dE4X8?si=26294582dce84797", external:true },
+      { title:"Blog", type:"Page", desc:"Read the Beyond Pages blog, including 'Who is Shadrack Tloboro'.", url:"https://payhip.com/shadracktloboro/blog/news/who-is-shadrack-tloboro" },
+      { title:"FAQs", type:"Page", desc:"Frequently asked questions about Beyond Pages.", url:"https://payhip.com/shadracktloboro/faqs" },
+      { title:"Contact Us", type:"Page", desc:"Get in touch with Shadrack Tloboro.", url:"https://payhip.com/shadracktloboro/contact-us" },
+      { title:"Connect / All Links", type:"Page", desc:"All social and contact links for Shadrack Tloboro.", url:"https://linktr.ee/shadracktloboro" },
+      { title:"Email", type:"Contact", desc:"Email Shadrack Tloboro directly.", url:"mailto:shadracktloboro@proton.me" },
+      { title:"Facebook", type:"Social", desc:"Follow Beyond Pages on Facebook.", url:"https://facebook.com/shadracktloboro", external:true },
+      { title:"Instagram", type:"Social", desc:"Follow Beyond Pages on Instagram.", url:"https://instagram.com/shadracktloboro", external:true },
+      { title:"X (Twitter)", type:"Social", desc:"Follow Beyond Pages on X.", url:"https://x.com/shadracktloboro", external:true },
+      { title:"YouTube", type:"Social", desc:"Watch Beyond Pages on YouTube.", url:"https://youtube.com/@shadracktloboro", external:true },
+      { title:"TikTok", type:"Social", desc:"Follow Beyond Pages on TikTok.", url:"https://tiktok.com/@shadracktloboro", external:true }
+    ];
+
+    const overlay = document.getElementById('searchOverlay');
+    const openBtn = document.getElementById('searchOpenBtn');
+    const closeBtn = document.getElementById('searchCloseBtn');
+    const input = document.getElementById('searchInput');
+    const resultsEl = document.getElementById('searchResults');
+
+    let currentResults = [];
+    let activeIndex = -1;
+    let lastFocused = null;
+
+    function levenshtein(a, b){
+      if(a === b) return 0;
+      const al = a.length, bl = b.length;
+      if(al === 0) return bl;
+      if(bl === 0) return al;
+      let prev = new Array(bl + 1);
+      let curr = new Array(bl + 1);
+      for(let j = 0; j <= bl; j++) prev[j] = j;
+      for(let i = 1; i <= al; i++){
+        curr[0] = i;
+        for(let j = 1; j <= bl; j++){
+          const cost = a[i-1] === b[j-1] ? 0 : 1;
+          curr[j] = Math.min(curr[j-1] + 1, prev[j] + 1, prev[j-1] + cost);
+        }
+        [prev, curr] = [curr, prev];
+      }
+      return prev[bl];
+    }
+
+    function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    function highlight(text, query){
+      const words = query.trim().split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      if(!words.length) return text;
+      let out = text;
+      words.forEach(w => {
+        if(w.length < 2) return;
+        const re = new RegExp('(' + escapeRegExp(w) + ')', 'ig');
+        out = out.replace(re, '<mark>$1</mark>');
+      });
+      return out;
+    }
+
+    function scoreEntry(entry, query){
+      const q = query.toLowerCase().trim();
+      if(!q) return 0;
+      const title = entry.title.toLowerCase();
+      const desc = entry.desc.toLowerCase();
+      const type = entry.type.toLowerCase();
+      let score = 0;
+
+      if(title === q) score += 200;
+      else if(title.startsWith(q)) score += 120;
+      else if(title.includes(q)) score += 90;
+
+      if(desc.includes(q)) score += 30;
+      if(type.includes(q)) score += 15;
+
+      const qWords = q.split(/\s+/).filter(Boolean);
+      qWords.forEach(qw => {
+        if(qw.length < 2) return;
+        if(title.includes(qw)) score += 18;
+        else if(desc.includes(qw)) score += 6;
+        else {
+          const candidates = (title + ' ' + desc).split(/\s+/);
+          let best = Infinity;
+          candidates.forEach(w => {
+            if(Math.abs(w.length - qw.length) > 2) return;
+            const d = levenshtein(qw, w);
+            if(d < best) best = d;
+          });
+          const threshold = qw.length <= 4 ? 1 : 2;
+          if(best <= threshold) score += (6 - best);
+        }
+      });
+
+      return score;
+    }
+
+    function runSearch(query){
+      if(!query.trim()){
+        currentResults = [];
+        renderResults(query);
+        return;
+      }
+      const scored = index
+        .map(entry => ({ entry, score: scoreEntry(entry, query) }))
+        .filter(r => r.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 8);
+      currentResults = scored.map(r => r.entry);
+      activeIndex = currentResults.length ? 0 : -1;
+      renderResults(query);
+    }
+
+    function renderResults(query){
+      resultsEl.innerHTML = '';
+      if(!query.trim()){
+        resultsEl.innerHTML = '<div class="search-hint">Start typing to search books, podcasts, and pages across the site.</div>';
+        input.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      if(!currentResults.length){
+        resultsEl.innerHTML = '<div class="search-empty">No results found for &ldquo;' + query.replace(/</g,'&lt;') + '&rdquo;</div>';
+        input.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      input.setAttribute('aria-expanded', 'true');
+      currentResults.forEach((entry, i) => {
+        const item = document.createElement('div');
+        item.className = 'search-result' + (i === activeIndex ? ' active' : '');
+        item.setAttribute('role', 'option');
+        item.id = 'search-result-' + i;
+        item.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
+        item.innerHTML =
+          '<div class="search-result-top">' +
+            '<span class="search-result-title">' + highlight(entry.title, query) + '</span>' +
+            '<span class="search-result-type">' + entry.type + '</span>' +
+          '</div>' +
+          '<div class="search-result-desc">' + highlight(entry.desc, query) + '</div>';
+        item.addEventListener('mouseenter', () => setActive(i));
+        item.addEventListener('click', () => selectEntry(entry));
+        resultsEl.appendChild(item);
+      });
+    }
+
+    function setActive(i){
+      activeIndex = i;
+      [...resultsEl.children].forEach((el, idx) => {
+        el.classList.toggle('active', idx === i);
+        el.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+      });
+      const activeEl = resultsEl.children[i];
+      if(activeEl) activeEl.scrollIntoView({ block: 'nearest' });
+    }
+
+    function selectEntry(entry){
+      closeSearch();
+      if(entry.url === '#__top'){
+        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 200);
+        return;
+      }
+      if(entry.url.startsWith('#')){
+        setTimeout(() => {
+          const target = document.querySelector(entry.url);
+          if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+        return;
+      }
+      if(entry.external){
+        window.open(entry.url, '_blank', 'noopener');
+      } else {
+        window.location.href = entry.url;
+      }
+    }
+
+    function openSearch(){
+      lastFocused = document.activeElement;
+      overlay.classList.add('open');
+      input.value = '';
+      currentResults = [];
+      activeIndex = -1;
+      renderResults('');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closeSearch(){
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    openBtn.addEventListener('click', openSearch);
+    closeBtn.addEventListener('click', closeSearch);
+
+    overlay.addEventListener('click', (e) => {
+      if(e.target === overlay) closeSearch();
+    });
+
+    input.addEventListener('input', () => runSearch(input.value));
+
+    input.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        if(currentResults.length) setActive((activeIndex + 1) % currentResults.length);
+      } else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        if(currentResults.length) setActive((activeIndex - 1 + currentResults.length) % currentResults.length);
+      } else if(e.key === 'Enter'){
+        e.preventDefault();
+        if(activeIndex >= 0 && currentResults[activeIndex]) selectEntry(currentResults[activeIndex]);
+      } else if(e.key === 'Escape'){
+        closeSearch();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const isK = e.key === 'k' || e.key === 'K';
+      if((e.ctrlKey || e.metaKey) && isK){
+        e.preventDefault();
+        overlay.classList.contains('open') ? closeSearch() : openSearch();
+      } else if(e.key === 'Escape' && overlay.classList.contains('open')){
+        closeSearch();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
