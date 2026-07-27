@@ -1311,7 +1311,7 @@
               '<path d="M4 4h1.6l1.1 12.2A2 2 0 0 0 8.7 18h9.1a2 2 0 0 0 2-1.75l1-7A1 1 0 0 0 19.8 8H6.2"></path>' +
             '</svg>' +
             '<p>Your cart is empty. Explore the collection and find your next read.</p>' +
-            '<a class="btn-ghost" href="#books">Browse Books</a>' +
+            '<a class="btn-ghost" href="#books" id="cartBrowseBooksBtn">Browse Books</a>' +
           '</div>';
         cartFooterEl.hidden = true;
         return;
@@ -1345,8 +1345,10 @@
     }
 
     cartItemsEl.addEventListener('click', (e) => {
-      const browseLink = e.target.closest('.cart-empty a.btn-ghost');
-      if(browseLink){
+      const browseBtn = e.target.closest('#cartBrowseBooksBtn');
+      if(browseBtn){
+        // let the default #books navigation happen, just close the drawer
+        // so the destination is actually visible instead of hidden behind it
         closeCart();
         return;
       }
