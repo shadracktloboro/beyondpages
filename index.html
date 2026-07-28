@@ -98,6 +98,26 @@
   .nav-cta:hover{background:var(--gold);color:var(--ink);}
   @media(max-width:760px){.nav-links{display:none;} .nav-cta{display:none;}}
 
+  /* ---------- Desktop hamburger (mirrors mobile menu-btn) ---------- */
+  .menu-btn-desktop{
+    display:flex;
+    position:relative;
+    width:34px;height:34px;flex-shrink:0;
+    flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    background:transparent;border:none;cursor:pointer;
+  }
+  .menu-btn-desktop span{
+    width:24px;height:2px;background:var(--gold-light);border-radius:2px;
+    transition:transform .3s ease,opacity .3s ease;
+  }
+  .menu-btn-desktop[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-btn-desktop[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .menu-btn-desktop[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(max-width:760px){.menu-btn-desktop{display:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .menu-btn-desktop span{transition:none !important;}
+  }
+
   /* ---------- Mobile hamburger + slide-in nav ---------- */
   .menu-btn{
     display:none;
@@ -620,6 +640,9 @@
           <path d="M21 21l-4.3-4.3"></path>
         </svg>
       </button>
+      <button class="menu-btn-desktop" id="menuBtnDesktop" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -933,6 +956,7 @@
 
 <script>
   const menuBtn = document.getElementById('menuBtn');
+  const menuBtnDesktop = document.getElementById('menuBtnDesktop');
   const navPanel = document.getElementById('navPanel');
   const navOverlay = document.getElementById('navOverlay');
 
@@ -942,6 +966,10 @@
     navPanel.setAttribute('aria-hidden','false');
     menuBtn.setAttribute('aria-expanded','true');
     menuBtn.setAttribute('aria-label','Close menu');
+    if(menuBtnDesktop){
+      menuBtnDesktop.setAttribute('aria-expanded','true');
+      menuBtnDesktop.setAttribute('aria-label','Close menu');
+    }
     document.body.style.overflow='hidden';
   }
   function closeMenu(){
@@ -950,11 +978,20 @@
     navPanel.setAttribute('aria-hidden','true');
     menuBtn.setAttribute('aria-expanded','false');
     menuBtn.setAttribute('aria-label','Open menu');
+    if(menuBtnDesktop){
+      menuBtnDesktop.setAttribute('aria-expanded','false');
+      menuBtnDesktop.setAttribute('aria-label','Open menu');
+    }
     document.body.style.overflow='';
   }
   menuBtn.addEventListener('click', () => {
     navPanel.classList.contains('open') ? closeMenu() : openMenu();
   });
+  if(menuBtnDesktop){
+    menuBtnDesktop.addEventListener('click', () => {
+      navPanel.classList.contains('open') ? closeMenu() : openMenu();
+    });
+  }
   navOverlay.addEventListener('click', closeMenu);
   navPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', (e) => {
