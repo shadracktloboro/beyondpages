@@ -245,8 +245,11 @@
   }
   .btn-ghost:hover{border-color:var(--gold);background:rgba(201,162,39,0.08);}
   .btn-ghost-glow{
-    box-shadow:0 0 5px rgba(245,241,232,0.35);
+    border-color:var(--gold);
+    box-shadow:0 0 10px rgba(201,162,39,0.45),0 0 22px rgba(201,162,39,0.25);
+    transition:box-shadow .3s,border-color .2s,background .2s;
   }
+  .btn-ghost-glow:hover{box-shadow:0 0 14px rgba(201,162,39,0.6),0 0 30px rgba(201,162,39,0.35);}
 
   /* JOURNEY BANNER */
   .journey-banner{line-height:0;background:var(--ink);}
