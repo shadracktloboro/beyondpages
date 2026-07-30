@@ -118,6 +118,25 @@
     .menu-btn-desktop span{transition:none !important;}
   }
 
+  /* ---------- Desktop close "X" (mirrors mobile menu-btn's open X, shown only while the desktop menu panel is open) ---------- */
+  .menu-close-desktop{
+    display:none;
+    position:fixed;top:8px;right:20px;
+    width:44px;height:44px;
+    flex-direction:column;align-items:center;justify-content:center;
+    background:transparent;border:none;cursor:pointer;z-index:1100;
+  }
+  .menu-close-desktop span{
+    position:absolute;
+    width:24px;height:2px;background:var(--gold-light);border-radius:2px;
+  }
+  .menu-close-desktop span:nth-child(1){transform:rotate(45deg);}
+  .menu-close-desktop span:nth-child(2){display:none;}
+  .menu-close-desktop span:nth-child(3){transform:rotate(-45deg);}
+  @media(min-width:761px){
+    .nav-panel.open ~ .menu-close-desktop{display:flex;}
+  }
+
   /* ---------- Mobile hamburger + slide-in nav ---------- */
   .menu-btn{
     display:none;
@@ -662,6 +681,9 @@
     <li><a href="https://payhip.com/shadracktloboro/contact-us">Contact Us</a></li>
   </ul>
 </nav>
+<button class="menu-close-desktop" id="menuCloseDesktop" type="button" aria-label="Close menu">
+  <span></span><span></span><span></span>
+</button>
 
 <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Site search">
   <div class="search-modal">
@@ -994,6 +1016,10 @@
   }
   navOverlay.addEventListener('click', closeMenu);
   navPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  const menuCloseDesktop = document.getElementById('menuCloseDesktop');
+  if(menuCloseDesktop){
+    menuCloseDesktop.addEventListener('click', closeMenu);
+  }
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && navPanel.classList.contains('open')) closeMenu();
   });
