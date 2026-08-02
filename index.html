@@ -82,7 +82,7 @@
   .nav-search-btn:active{transform:scale(0.92);}
   @media(max-width:760px){
     .nav-search-btn{
-      position:fixed;top:9px;right:72px;z-index:1100;
+      position:fixed;top:9px;right:124px;z-index:1100;
       width:40px;height:40px;
     }
   }
@@ -663,6 +663,14 @@
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="7"></circle>
           <path d="M21 21l-4.3-4.3"></path>
+        </svg>
+      </button>
+      <button class="nav-chat-btn" id="chatWidgetBtn" type="button" aria-label="Chat with us" onclick="document.getElementById('chatPanelOverlay').classList.add('open')">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="5" width="17" height="12" rx="3.5"></rect>
+          <path d="M9 17L6 20.3V17"></path>
+          <line x1="7.3" y1="9.2" x2="12" y2="9.2"></line>
+          <line x1="7.3" y1="12.6" x2="16.2" y2="12.6"></line>
         </svg>
       </button>
       <button class="menu-btn-desktop" id="menuBtnDesktop" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
@@ -1516,5 +1524,93 @@
   })();
 </script>
 
+<style>
+  .nav-chat-btn{
+    display:flex;align-items:center;justify-content:center;
+    width:34px;height:34px;flex-shrink:0;
+    background:transparent;border:none;padding:0;
+    cursor:pointer;transition:transform .15s ease,opacity .2s ease;
+    opacity:0.85;
+  }
+  .nav-chat-btn svg{width:19px;height:19px;stroke:var(--gold-light);stroke-width:1.8;fill:none;}
+  .nav-chat-btn:hover{opacity:1;}
+  .nav-chat-btn:hover svg{stroke:var(--gold);}
+  .nav-chat-btn:active{transform:scale(0.92);}
+  @media(max-width:760px){
+    .nav-chat-btn{
+      position:fixed;top:9px;right:72px;z-index:1100;
+      width:40px;height:40px;
+    }
+  }
+
+  #chatPanelOverlay{
+    position:fixed; inset:0; background:rgba(12,13,16,0.55);
+    z-index:10000; display:none; align-items:flex-start; justify-content:flex-end;
+    padding:80px 24px 24px;
+  }
+  @media(max-width:760px){#chatPanelOverlay{padding:64px 16px 16px;}}
+  #chatPanelOverlay.open{display:flex;}
+  #chatPanel{
+    width:340px; max-width:92vw; background:var(--cream);
+    border-radius:14px; overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,0.4);
+    font-family:var(--sans);
+    animation:chatPanelIn .18s ease-out;
+  }
+  @keyframes chatPanelIn{from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);}}
+  #chatPanel .cp-header{
+    background:var(--ink); color:var(--cream); padding:18px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  #chatPanel .cp-header h3{font-family:var(--serif); color:var(--gold-light); font-size:19px; font-weight:700;}
+  #chatPanel .cp-header p{font-size:12px; color:var(--muted); margin-top:2px;}
+  #chatPanel .cp-close{background:none; border:none; color:var(--cream); font-size:20px; cursor:pointer; line-height:1;}
+  #chatPanel .cp-body{padding:20px;}
+  #chatPanel label{display:block; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted-dark); margin:12px 0 6px;}
+  #chatPanel label:first-child{margin-top:0;}
+  #chatPanel input, #chatPanel textarea{
+    width:100%; border:1px solid rgba(12,13,16,0.15); border-radius:8px;
+    padding:10px 12px; font-family:var(--sans); font-size:13.5px; color:var(--ink);
+    background:#fff;
+  }
+  #chatPanel textarea{resize:vertical; min-height:80px;}
+  #chatPanel input:focus, #chatPanel textarea:focus{outline:2px solid var(--gold); border-color:var(--gold);}
+  #chatPanel .cp-send{
+    margin-top:16px; width:100%; background:var(--gold); color:var(--ink);
+    border:none; border-radius:8px; padding:12px; font-weight:700; font-size:14px;
+    cursor:pointer; transition:background .15s;
+  }
+  #chatPanel .cp-send:hover{background:var(--gold-light);}
+  #chatPanel .cp-note{font-size:11px; color:var(--muted-dark); margin-top:10px; text-align:center;}
+</style>
+
+<div id="chatPanelOverlay" onclick="if(event.target===this) this.classList.remove('open')">
+  <div id="chatPanel">
+    <div class="cp-header">
+      <div>
+        <h3>Chat with us</h3>
+        <p>We usually reply within a day</p>
+      </div>
+      <button class="cp-close" aria-label="Close" onclick="document.getElementById('chatPanelOverlay').classList.remove('open')">&times;</button>
+    </div>
+    <div class="cp-body">
+      <label for="cpName">Name</label>
+      <input id="cpName" type="text" placeholder="Your name">
+      <label for="cpEmail">Email</label>
+      <input id="cpEmail" type="email" placeholder="you@example.com">
+      <label for="cpMsg">Message</label>
+      <textarea id="cpMsg" placeholder="How can we help?"></textarea>
+      <button class="cp-send" onclick="
+        var n=document.getElementById('cpName').value||'';
+        var e=document.getElementById('cpEmail').value||'';
+        var m=document.getElementById('cpMsg').value||'';
+        var body=encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m);
+        var subject=encodeURIComponent('Message from '+ (n||'website visitor') +' via Beyond Pages site');
+        window.location.href='mailto:shadracktloboro@proton.me?subject='+subject+'&body='+body;
+      ">Send Message</button>
+      <p class="cp-note">Opens your email app to send this to us directly.</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
