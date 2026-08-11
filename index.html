@@ -80,7 +80,7 @@
   .nav-search-btn:hover{opacity:1;}
   .nav-search-btn:hover svg{stroke:var(--gold);}
   .nav-search-btn:active{transform:scale(0.92);}
-  @media(max-width:760px){
+  @media(max-width:900px){
     .nav-search-btn{
       position:fixed;top:9px;right:116px;z-index:1100;
       width:40px;height:40px;
@@ -96,7 +96,7 @@
     padding:9px 18px;border-radius:2px;transition:background .2s,color .2s;
   }
   .nav-cta:hover{background:var(--gold);color:var(--ink);}
-  @media(max-width:760px){.nav-links{display:none;} .nav-cta{display:none;}}
+  @media(max-width:900px){.nav-links{display:none;} .nav-cta{display:none;}}
 
   /* ---------- Desktop hamburger (mirrors mobile menu-btn) ---------- */
   .menu-btn-desktop{
@@ -113,7 +113,7 @@
   .menu-btn-desktop[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .menu-btn-desktop[aria-expanded="true"] span:nth-child(2){opacity:0;}
   .menu-btn-desktop[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  @media(max-width:760px){.menu-btn-desktop{display:none;}}
+  @media(max-width:900px){.menu-btn-desktop{display:none;}}
   @media (prefers-reduced-motion: reduce){
     .menu-btn-desktop span{transition:none !important;}
   }
@@ -133,7 +133,7 @@
   .menu-close-desktop span:nth-child(1){transform:rotate(45deg);}
   .menu-close-desktop span:nth-child(2){display:none;}
   .menu-close-desktop span:nth-child(3){transform:rotate(-45deg);}
-  @media(min-width:761px){
+  @media(min-width:901px){
     .nav-panel.open ~ .menu-close-desktop{display:flex;}
   }
 
@@ -145,7 +145,7 @@
     flex-direction:column;align-items:center;justify-content:center;gap:5px;
     background:transparent;border:none;cursor:pointer;z-index:1100;
   }
-  @media(max-width:760px){.menu-btn{display:flex;}}
+  @media(max-width:900px){.menu-btn{display:flex;}}
   .menu-btn span{
     width:24px;height:2px;background:var(--gold-light);border-radius:2px;
     transition:transform .3s ease,opacity .3s ease;
@@ -285,6 +285,7 @@
     box-shadow:0 18px 40px -14px rgba(12,13,16,0.3);
     transition:transform .35s ease, box-shadow .35s ease;
   }
+  .book-cover-link{display:block;width:100%;height:100%;}
   .book-cover img{
     width:100%;height:100%;object-fit:contain;
     filter:drop-shadow(0 16px 26px rgba(12,13,16,0.32));
@@ -830,7 +831,9 @@
     <div class="book-grid">
       <div class="book-card">
         <div class="book-cover">
-          <img src="assets/cover-pressure-creates-diamonds.png" alt="Pressure Creates Diamonds book cover">
+          <a href="https://payhip.com/b/58dUi" class="book-cover-link" aria-label="View Pressure Creates Diamonds">
+            <img src="assets/cover-pressure-creates-diamonds.png" alt="Pressure Creates Diamonds book cover">
+          </a>
         </div>
         <div class="book-meta">
           <span class="book-price">$14.99</span>
@@ -855,7 +858,9 @@
 
       <div class="book-card">
         <div class="book-cover">
-          <img src="assets/cover-elevate-your-life.png" alt="Elevate Your Life book cover">
+          <a href="https://payhip.com/b/lyqxg" class="book-cover-link" aria-label="View Elevate Your Life">
+            <img src="assets/cover-elevate-your-life.png" alt="Elevate Your Life book cover">
+          </a>
         </div>
         <div class="book-meta">
           <span class="book-price">$12.99</span>
@@ -880,7 +885,9 @@
 
       <div class="book-card">
         <div class="book-cover">
-          <img src="assets/cover-breakthrough-society.png" alt="Breakthrough Society book cover">
+          <a href="https://payhip.com/b/vgIsf" class="book-cover-link" aria-label="View Breakthrough Society">
+            <img src="assets/cover-breakthrough-society.png" alt="Breakthrough Society book cover">
+          </a>
         </div>
         <div class="book-meta">
           <span class="book-price">$14.99</span>
@@ -1631,7 +1638,7 @@
   .nav-chat-btn:hover{opacity:1;}
   .nav-chat-btn:hover svg{stroke:var(--gold);}
   .nav-chat-btn:active{transform:scale(0.92);}
-  @media(max-width:760px){
+  @media(max-width:900px){
     .nav-chat-btn{
       position:fixed;top:9px;right:68px;z-index:1100;
       width:40px;height:40px;
