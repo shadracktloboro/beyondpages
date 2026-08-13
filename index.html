@@ -1057,6 +1057,8 @@
         <a href="https://payhip.com/shadracktloboro/collection/all">Store</a>
         <a href="https://linktr.ee/shadracktloboro">All Links</a>
         <a href="mailto:shadracktloboro@proton.me">Email</a>
+        <a href="#" onclick="bpDownloadPrivacyPolicy();return false;">Privacy Policy</a>
+        <a href="#" onclick="bpReopenCookieConsent();return false;">Cookie Settings</a>
       </div>
     </div>
     <div class="footer-social">
@@ -1714,5 +1716,133 @@
     </div>
   </div>
 </div>
+
+<style>
+  #bpConsentOverlay{
+    position:fixed; left:0; right:0; bottom:0; background:transparent;
+    z-index:10500; display:flex; align-items:flex-end; justify-content:center;
+    padding:0; opacity:1; transition:opacity .25s ease; pointer-events:none;
+  }
+  #bpConsentOverlay .bp-consent-card{ pointer-events:auto; }
+  #bpConsentOverlay.hidden{opacity:0; pointer-events:none;}
+  #bpConsentOverlay.bp-init-hidden{display:none;}
+  .bp-consent-card{
+    width:100%; max-width:440px;
+    background:var(--cream);
+    border-radius:18px 18px 0 0;
+    box-shadow:0 -10px 34px rgba(0,0,0,.28);
+    overflow:hidden;
+    position:relative;
+    animation:bpSlideUp .32s ease;
+    font-family:var(--sans);
+  }
+  @media(min-width:560px){
+    .bp-consent-card{border-radius:16px; margin:0 0 28px;}
+  }
+  @keyframes bpSlideUp{from{transform:translateY(36px);opacity:0;} to{transform:translateY(0);opacity:1;}}
+
+  .bp-consent-banner{
+    height:78px;
+    background:
+      linear-gradient(90deg, rgba(18,20,28,.45), rgba(201,162,39,.35)),
+      linear-gradient(120deg, var(--navy), var(--teal));
+    position:relative;
+  }
+  .bp-consent-close{
+    position:absolute; top:12px; right:12px;
+    width:32px; height:32px; border-radius:50%;
+    background:#fff; border:none;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:16px; color:var(--navy); line-height:1;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+  }
+  .bp-consent-body{padding:22px 24px 24px;}
+  .bp-consent-body p{
+    margin:0 0 16px; color:var(--ink); font-size:14.5px; line-height:1.55;
+  }
+  .bp-consent-body a.bp-policy-link{
+    color:var(--gold); text-decoration:underline; font-weight:600; cursor:pointer;
+  }
+  .bp-btn{
+    display:block; width:100%; text-align:center;
+    padding:13px 20px; border-radius:30px;
+    font-size:14.5px; font-weight:700; font-family:var(--sans);
+    cursor:pointer; margin-bottom:10px; border:2px solid var(--gold);
+    transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
+  }
+  .bp-btn:active{transform:scale(0.98);}
+  .bp-btn-accept{
+    background:linear-gradient(180deg, var(--gold-light), var(--gold));
+    color:var(--ink); box-shadow:0 4px 10px rgba(201,162,39,.35);
+  }
+  .bp-btn-accept:hover{box-shadow:0 6px 14px rgba(201,162,39,.5);}
+  .bp-btn-deny{background:var(--cream); color:var(--gold);}
+  .bp-btn-deny:hover{background:var(--cream-2);}
+  .bp-prefs-row{text-align:center; margin-top:2px;}
+  .bp-prefs-row a{color:var(--gold); font-size:13px; text-decoration:underline; cursor:pointer;}
+
+
+</style>
+
+<div id="bpConsentOverlay" class="bp-init-hidden">
+  <div class="bp-consent-card">
+    <div class="bp-consent-banner">
+      <button class="bp-consent-close" aria-label="Close" onclick="bpSetConsent('closed')">&times;</button>
+    </div>
+    <div class="bp-consent-body">
+      <p>
+        We use cookies to enhance your experience on the Beyond Pages store,
+        analyse site usage and personalise content. By clicking Accept or
+        continuing to use this website, you consent to the use of cookies
+        in accordance with our
+        <a class="bp-policy-link" onclick="bpDownloadPrivacyPolicy()">Privacy Policy</a>.
+      </p>
+      <button class="bp-btn bp-btn-accept" onclick="bpSetConsent('accepted')">Accept</button>
+      <button class="bp-btn bp-btn-deny" onclick="bpSetConsent('denied')">Deny</button>
+      <div class="bp-prefs-row">
+        <a onclick="alert('Cookie preferences panel goes here.')">Preferences</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var BP_PRIVACY_PDF_B64 = "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyAxMCAwIFIgL01lZGlhQm94IFsgMCAwIDYxMiA3OTIgXSAvUGFyZW50IDkgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0NvbnRlbnRzIDExIDAgUiAvTWVkaWFCb3ggWyAwIDAgNjEyIDc5MiBdIC9QYXJlbnQgOSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNyAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDkgMCBSIC9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9BdXRob3IgKEJleW9uZCBQYWdlcykgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDgxMzAyNDcyNSswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDgxMzAyNDcyNSswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoQmV5b25kIFBhZ2VzIFwyMDQgUHJpdmFjeSBQb2xpY3kpIC9UcmFwcGVkIC9GYWxzZQo+PgplbmRvYmoKOSAwIG9iago8PAovQ291bnQgMiAvS2lkcyBbIDUgMCBSIDYgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iagoxMCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAxODA3Cj4+CnN0cmVhbQpHYXRtO2dNWWI4JjpPOlMlLnJUcDJDaFo+LTFyakhoKSVSSVcvNkJTNVtJTFA5JixmcDE6cDMkcVlRamVQLkpXOyc+UTpFTTwmXHBrS0s/Njg0MzwvclxILV8/N2tDODU9NWMmPi0nLTJLOiFHQ2tdVXQ5bTM6bWwtQmZSSGFgKiFcWylEb04xLmdJczhBVE5kTCNXSUMraGoqV1JJcGBCS21XXD8vUD1aVS1rKmZWTGIydUpdKURSK1QsWDY2SHVvMlQiWUlJOmlcdSZUMEUwNyUtSFgpODMja19sJlI8MEQwVktWWCVEdT8+U11nPnRwRExzOjFNVj9gTlM5MjE3cnF0N0ZTQ0k/blMlQUtMNig7WGNHLl09TmByPipSTjpNYzowOiJcU0kkW001TmxbYkRLJFUqVVo7YVVFVGQ9UC1jOT9HInI3OTovWTt0PzZTKEY2XFojR0wtLGwnPk9QajIrKyE1TV86Nk9IYlddTnAhMktKWUJTbzZhLylhN2omQWYubyEpN1NoUFNaWGA6TW1dcWFqYDdTajxzJz90KDgnPS01Vzw8RWpUUU45Q1JJNFY0NT9MPzZWJCcnQUxaL0BXPnFwLTo/LmFjMzJybzhcUWkjYU5SYTpCcUFOWk5LNC1hIV5sNjZ1L2xmPS1WQSllaU1DayU6S29yYEIvdVFfOzJPRWd1Tk8kXD1IYVpaZ0dzdWpjZFRmbz1tayhyXVpUXS1tTSZXRyQ8dWVpUmVrIXFmbGIqaEI9KzJVS1EnN0lAQlRYTmw7bkErKFk3JSRSTl4sUWIlV1gpaUFsMFxlLydAT05ZOGAuZ0U2Ly0iYGJEUmo2S2hdXU1OKEdkPTtJKCNLNT8uW2txakdNI0JZSHVMWjJeU0Rxa3MpIy5SU0JEQV5hVFVaYXA2SEpNJ2pHUlgsSzEoN0peWjBVXkZrRXBsVSlqTyI7UGVsQmhhKDU+TmE+UmEtVTE3RlM5IyomUFBgZUcjIUdMNGddR0EqbDM6PGk8OFZdKWxnYVU0NSxdUjROYkRnRGpcUycybWx1SCs4VV5GVW1VOUpxYy10byxQLk1dcEJhOVBmZFZ0aCsiKFZAImVocClgdS9yZV5rQnVvW1ZBPD1uQmFEbCUjOXVFVV9TbHMzQENfWU5bbEcxcCsqPyppSUhPQGJDZmxHckwnKGRxclsoPVYiNEV1SGVuVC5TWiRLc11sYCJmNjRVTyhfaUJINyIkWz9DPD9lOVswYkRyb0NgI0NVOC1ZKUV0V1NfJ1gzJmklUj9RJj51X0dnLGplVF9ZRV0mZUQsVD9waGJSYUtlN05MdCwrb2hGRCdZQFZQcjoxRFM3cFpCWEdgRS1GPmw9NDQ9UFN1blAlLlAjaUxpcWlzRmZnWm1YMzAmTXFUaz5LPDU0bFw3MW1QSGZGTDo5JlVudCI+QnMnU0dARik1QixqJjRYOmxnLGpxW1ZmdWRHUkpwXSliWUhXR3JjMU0tJVh0amA0PmJsNUk8aCtVLWtMam4qVElNWFkjJmFHREtHTUNHTXQ6PDk+TFYuOG8lIVNzPk82I2pVckJfJSpJcl9sNnRoLyRsLUMiNjFeKFBgXkhCbnFfITFmdE8/bGo3IVpfVERFPkg1K181JjlzITRlLC1JaWxnSkVDaUJYLEVmP19qKjhjR11bMGpMSy83bzszZ0pWWEorKSokZCNRSDtJRTo4bSNRM1BeLmk9YkBUQGpUZnRIZGNTLEwkZzgnPz5qQj1PcjlabyQnQU0qTi1idSJJKGUuOi88Ty1xW0ElNEpUcClabGxFQFpTV1w2VEdfLV5jJydEaGgvTicvKEk+RFdBOHEmNDBMJUgqOiZwUVBYS0RpSSRWJmlNLyRkKUpTR0lVIjhWczpbZlRUOj5MZzFxTTkhQlJoT05NZSduWiReVDtwRzteOWMwPyIuQUJGSiphcEYlZD82Z2ZPZzgibV5oMj5ZL1NUYE9ydEliJTAsMzBGZ1VMaUU8UVlXZ2hJbEI8Lm43KCxiUG8pWGB0XmEzLlVVYEdSTVZkYXRoMSdhXGZJaVU1bEAyaTxbOEU4Q1J0Uyk3VTRQPEppVEMpNyJqIydvXDFaXWFaTFFsWD9XNTpDcUU4QWRJST4taSpqJVxGazcoZEZkR04uWS5nNSxgVlxGaUVbcWVhVk4/QiRbRnMybVBwMUgnMjJbNFVSYSdIY046WSVETC91VFM9XVFpZV1NYl0xXS9gblorOEwkaUhmYVZcSWxRRmdCP1dqayE3bG4vP0RkKTI2NkpLKzBuYmNPUFdYLDBLaSxON2RSXShTZUxsI3MtVWxLMVBPZiI7PWFrK2gsNjheUiQ5SVhcLjsiJy1wQmo7S1NbNytHUFdLQGZOJmxeRjpkSFRzczQnVFNyZ05iPlglN34+ZW5kc3RyZWFtCmVuZG9iagoxMSAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA4MjYKPj4Kc3RyZWFtCkdhdG05PkFxdEUnUm9NU3BwP3JOLTgvLDguby5pOSNkZkFsIm5CSGZTJStHXCZ1VzFtLks/ISdiQVEuNCtLQHNyOy9DX0AqQlA1XjRoTWxDJDkxYiJuc1AuLTg9LzY4JF1wdD8vPWlqaUhzQFEuYlhfJEVCWnF0JmNGPVo7TSVAViQrU0khNUoqdWlQIkxGTy4ocipzIT1HWD0uRjw+bl1dYj5rQ1RoY25mOlZtRUM4Z2VEUEZTdUYuRGtxOzVoWEMrJ0UoQmpkRV5yXl5hNFJOK2dqSUQxSlhpZmVDYlFcIWo/RnJMRkArTWtVcDdLSCx1aFMtVkBvRjRrZGtSUi80czNPXG0hOU49dDw4U1ZtNSRBOTMmaEQnJFxFUWcuSTkuZzw/TExiUicjOVBYVj8/USpuWlprMTguS0o7ZGBPUGJEWkgoOFxOTEhUXVVhUiE2ZERZbjZTY2U8NVpxZHMwOFVIc0sqITVCLSVVQlgpOGxpVChSIktpKSc6W0ErUWlOTlYyPSxzLkF0QWJdKjJhQD5EUVdbdEVKakwnK0VVVjlILFg8YyckIW9iaE0sSWJoRFJcT3E0aCszcVVUZHRKMSYjMDZoU2wiamRGczsjJkBKQjZxcmtFJWNdR1U9bi0hSXVKK2dyJExOTzJ1JD5EUyFpXDdeSEcjKTBlVXA2XD9fSlE+XEJHcSY+cDFvMW5wNCQiUTljaVt1dW0oNUVgQiY7SjJpPStsbUlBQkY2MCdHSyNZQlQvakdMTTBdK3A8PCRlJERaRm5xITddO11KLE4jckxsTSVfL3FZXEltTiYvK2w0SnJPdCM/bCdiV0MmX0klIm4tPlwvPEY9S0opQW1IZV9LQ1QpSCpVckE/ajZoLC8jU0BoViNDRCcmVCszW1FLZFpMclRoMm5UIVZpOSxaITA1UztISCoyZnJEWSlrLVtfQDwjIS8zRVM5OEguV0cjJyRZRmxBUSY4TC5yKmUqN0onWD9sPC09TipdOVZnXUVHaWhwQ1BaKiw8V21BNSlcWVk1Tk07czVKakM5RmUuUUVtUG1rSyteS1VmWFU8XFk5cnAwVVJJPUhwUi8/dT44RmI3fj5lbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCAxMgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExMiAwMDAwMCBuIAowMDAwMDAwMjE5IDAwMDAwIG4gCjAwMDAwMDAzMzEgMDAwMDAgbiAKMDAwMDAwMDQ0NiAwMDAwMCBuIAowMDAwMDAwNjQwIDAwMDAwIG4gCjAwMDAwMDA4MzQgMDAwMDAgbiAKMDAwMDAwMDkwMiAwMDAwMCBuIAowMDAwMDAxMjAwIDAwMDAwIG4gCjAwMDAwMDEyNjUgMDAwMDAgbiAKMDAwMDAwMzE2NCAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxiOWNhNWNlYWIyMWM3NTNlMjgyMzRkM2JiMTYxZTc2Mz48YjljYTVjZWFiMjFjNzUzZTI4MjM0ZDNiYjE2MWU3NjM+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDggMCBSCi9Sb290IDcgMCBSCi9TaXplIDEyCj4+CnN0YXJ0eHJlZgo0MDgxCiUlRU9GCg==";
+
+  function bpDownloadPrivacyPolicy(){
+    var a = document.createElement('a');
+    a.href = 'data:application/pdf;base64,' + BP_PRIVACY_PDF_B64;
+    a.download = 'Beyond-Pages-Privacy-Policy.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function bpSetConsent(choice){
+    try{ localStorage.setItem('bpCookieConsent', choice); }catch(e){}
+    var overlay = document.getElementById('bpConsentOverlay');
+    overlay.classList.add('hidden');
+    setTimeout(function(){ overlay.classList.add('bp-init-hidden'); }, 260);
+  }
+
+  function bpReopenCookieConsent(){
+    var overlay = document.getElementById('bpConsentOverlay');
+    overlay.classList.remove('bp-init-hidden');
+    overlay.classList.remove('hidden');
+  }
+
+  (function bpInitConsent(){
+    var saved;
+    try{ saved = localStorage.getItem('bpCookieConsent'); }catch(e){ saved = null; }
+    var overlay = document.getElementById('bpConsentOverlay');
+    if(saved){
+      overlay.classList.add('hidden');
+      overlay.classList.add('bp-init-hidden');
+    } else {
+      overlay.classList.remove('bp-init-hidden');
+    }
+  })();
+</script>
+
 </body>
 </html>
