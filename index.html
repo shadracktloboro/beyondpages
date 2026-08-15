@@ -1609,6 +1609,9 @@
     }
     cartCloseBtn.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
+    cartItemsEl.addEventListener('click', (e) => {
+      if(e.target.closest('a[href="#books"]')) closeCart();
+    });
     document.addEventListener('keydown', (e) => {
       if(e.key === 'Escape' && cartPanel.classList.contains('open')) closeCart();
     });
