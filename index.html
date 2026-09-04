@@ -305,6 +305,15 @@
   }
   .book-link:hover{color:var(--gold);border-color:var(--gold);}
 
+  .book-rating{display:flex;align-items:center;gap:6px;}
+  .book-rating-stars{display:flex;gap:1px;}
+  .book-rating-stars button{
+    background:none;border:none;cursor:pointer;padding:1px;
+    font-size:15px;line-height:1;color:#d8d2be;
+  }
+  .book-rating-stars button.br-filled{color:var(--gold);}
+  .book-rating-count{font-size:11px;color:var(--muted);white-space:nowrap;}
+
   .books-cta{text-align:center;margin-top:56px;}
   .btn-dark{
     display:inline-block;background:var(--ink);color:var(--gold-light);
@@ -843,6 +852,10 @@
           <span class="book-price">$14.99</span>
           <a class="book-link" href="https://payhip.com/b/58dUi">View →</a>
         </div>
+        <div class="book-rating" data-book-id="pressure-creates-diamonds">
+          <div class="book-rating-stars"></div>
+          <span class="book-rating-count"></span>
+        </div>
         <div class="book-actions">
           <button class="book-add-btn" type="button"
             data-id="pressure-creates-diamonds"
@@ -870,6 +883,10 @@
           <span class="book-price">$12.99</span>
           <a class="book-link" href="https://payhip.com/b/lyqxg">View →</a>
         </div>
+        <div class="book-rating" data-book-id="elevate-your-life">
+          <div class="book-rating-stars"></div>
+          <span class="book-rating-count"></span>
+        </div>
         <div class="book-actions">
           <button class="book-add-btn" type="button"
             data-id="elevate-your-life"
@@ -896,6 +913,10 @@
         <div class="book-meta">
           <span class="book-price">$14.99</span>
           <a class="book-link" href="https://payhip.com/b/vgIsf">View →</a>
+        </div>
+        <div class="book-rating" data-book-id="breakthrough-society">
+          <div class="book-rating-stars"></div>
+          <span class="book-rating-count"></span>
         </div>
         <div class="book-actions">
           <button class="book-add-btn" type="button"
@@ -1837,6 +1858,45 @@
     overlay.classList.remove('bp-init-hidden');
     overlay.classList.remove('hidden');
   }
+
+  function bpInitRatings(){
+    var rows = document.querySelectorAll('.book-rating');
+    rows.forEach(function(row){
+      var bookId = row.getAttribute('data-book-id');
+      var starsWrap = row.querySelector('.book-rating-stars');
+      var countEl = row.querySelector('.book-rating-count');
+      var key = 'bpRating_' + bookId;
+
+      var saved;
+      try{ saved = parseInt(localStorage.getItem(key), 10); }catch(e){ saved = 0; }
+      if(!saved || saved < 1 || saved > 5) saved = 0;
+
+      function render(value){
+        starsWrap.innerHTML = '';
+        for(var i = 1; i <= 5; i++){
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('data-value', i);
+          btn.setAttribute('aria-label', i + ' star' + (i > 1 ? 's' : ''));
+          btn.textContent = '\u2605';
+          if(i <= value) btn.classList.add('br-filled');
+          starsWrap.appendChild(btn);
+        }
+        countEl.textContent = value > 0 ? 'You rated this ' + value + '/5' : '';
+      }
+
+      starsWrap.addEventListener('click', function(e){
+        var btn = e.target.closest('button');
+        if(!btn) return;
+        var value = parseInt(btn.getAttribute('data-value'), 10);
+        try{ localStorage.setItem(key, value); }catch(err){}
+        render(value);
+      });
+
+      render(saved);
+    });
+  }
+  bpInitRatings();
 
   (function bpInitConsent(){
     var saved;
