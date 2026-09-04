@@ -1859,45 +1859,6 @@
     overlay.classList.remove('hidden');
   }
 
-  function bpInitRatings(){
-    var rows = document.querySelectorAll('.book-rating');
-    rows.forEach(function(row){
-      var bookId = row.getAttribute('data-book-id');
-      var starsWrap = row.querySelector('.book-rating-stars');
-      var countEl = row.querySelector('.book-rating-count');
-      var key = 'bpRating_' + bookId;
-
-      var saved;
-      try{ saved = parseInt(localStorage.getItem(key), 10); }catch(e){ saved = 0; }
-      if(!saved || saved < 1 || saved > 5) saved = 0;
-
-      function render(value){
-        starsWrap.innerHTML = '';
-        for(var i = 1; i <= 5; i++){
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.setAttribute('data-value', i);
-          btn.setAttribute('aria-label', i + ' star' + (i > 1 ? 's' : ''));
-          btn.textContent = '\u2605';
-          if(i <= value) btn.classList.add('br-filled');
-          starsWrap.appendChild(btn);
-        }
-        countEl.textContent = value > 0 ? 'You rated this ' + value + '/5' : '';
-      }
-
-      starsWrap.addEventListener('click', function(e){
-        var btn = e.target.closest('button');
-        if(!btn) return;
-        var value = parseInt(btn.getAttribute('data-value'), 10);
-        try{ localStorage.setItem(key, value); }catch(err){}
-        render(value);
-      });
-
-      render(saved);
-    });
-  }
-  bpInitRatings();
-
   (function bpInitConsent(){
     var saved;
     try{ saved = localStorage.getItem('bpCookieConsent'); }catch(e){ saved = null; }
@@ -1911,5 +1872,98 @@
   })();
 </script>
 
+<script type="module">
+  // Beyond Pages — shared star ratings (Firebase Firestore)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, doc, getDoc, setDoc, increment
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyBA2YAdcjRMBLh8CmYfmqCGQF0wzbdescA",
+    authDomain: "beyond-pages-ratings.firebaseapp.com",
+    projectId: "beyond-pages-ratings",
+    storageBucket: "beyond-pages-ratings.firebasestorage.app",
+    messagingSenderId: "425816679962",
+    appId: "1:425816679962:web:6028f9331b157a033093a3"
+  };
+
+  var app = initializeApp(firebaseConfig);
+  var db = getFirestore(app);
+
+  var COUNT_THRESHOLD = 3; // hide the number until a book has at least this many ratings
+
+  function renderStars(starsWrap, filledValue, interactive){
+    starsWrap.innerHTML = '';
+    for(var i = 1; i <= 5; i++){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('data-value', i);
+      btn.setAttribute('aria-label', i + ' star' + (i > 1 ? 's' : ''));
+      btn.textContent = '\u2605';
+      if(i <= filledValue) btn.classList.add('br-filled');
+      if(!interactive) btn.style.cursor = 'default';
+      starsWrap.appendChild(btn);
+    }
+  }
+
+  function renderCount(countEl, total, count, myValue){
+    if(myValue > 0){
+      countEl.textContent = 'You rated this ' + myValue + '/5';
+    } else if(count >= COUNT_THRESHOLD){
+      countEl.textContent = (total / count).toFixed(1) + ' \u2605 (' + count + ' ratings)';
+    } else {
+      countEl.textContent = '';
+    }
+  }
+
+  async function initRow(row){
+    var bookId = row.getAttribute('data-book-id');
+    var starsWrap = row.querySelector('.book-rating-stars');
+    var countEl = row.querySelector('.book-rating-count');
+    var votedKey = 'bpVoted_' + bookId;
+
+    var myValue = 0;
+    try{ myValue = parseInt(localStorage.getItem(votedKey), 10) || 0; }catch(e){ myValue = 0; }
+
+    var ref = doc(db, 'ratings', bookId);
+    var total = 0, count = 0;
+    try{
+      var snap = await getDoc(ref);
+      if(snap.exists()){
+        var data = snap.data();
+        total = data.total || 0;
+        count = data.count || 0;
+      }
+    }catch(e){
+      // If Firestore can't be reached, fall back to showing plain stars.
+    }
+
+    var alreadyVoted = myValue > 0;
+    renderStars(starsWrap, alreadyVoted ? myValue : 0, !alreadyVoted);
+    renderCount(countEl, total, count, myValue);
+
+    if(alreadyVoted) return;
+
+    starsWrap.addEventListener('click', async function(e){
+      var btn = e.target.closest('button');
+      if(!btn) return;
+      var value = parseInt(btn.getAttribute('data-value'), 10);
+
+      // Lock it in locally first so a double-click can't submit twice.
+      try{ localStorage.setItem(votedKey, value); }catch(err){}
+      renderStars(starsWrap, value, false);
+      renderCount(countEl, total, count, value);
+
+      try{
+        await setDoc(ref, { total: increment(value), count: increment(1) }, { merge: true });
+      }catch(err){
+        // Vote is still remembered on this device even if the network write failed.
+      }
+    });
+  }
+
+  document.querySelectorAll('.book-rating').forEach(initRow);
+</script>
 </body>
 </html>
