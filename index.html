@@ -336,6 +336,50 @@
   .strip-num{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--gold-light);}
   .strip-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,241,232,0.78);margin-top:6px;}
 
+  /* FIND OUR BOOKS ELSEWHERE */
+  .elsewhere-section{padding:88px 32px 92px;background:var(--cream-2);}
+  .elsewhere-inner{max-width:920px;}
+  .elsewhere-card{
+    margin-top:8px;
+  }
+  .elsewhere-top{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
+  .elsewhere-toggle{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--sans);font-size:13px;font-weight:600;color:var(--teal);
+    background:rgba(44,80,73,0.08);border:1px solid rgba(44,80,73,0.35);
+    padding:10px 16px;border-radius:24px;white-space:nowrap;cursor:pointer;
+    transition:background .15s ease,border-color .15s ease;flex-shrink:0;
+  }
+  .elsewhere-toggle:hover{background:rgba(44,80,73,0.14);border-color:var(--teal);}
+  .elsewhere-toggle .e-arrow{font-size:13px;transition:transform .2s ease;color:var(--teal);}
+  .elsewhere-toggle.open .e-arrow{transform:rotate(90deg);}
+  .elsewhere-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease;}
+  .elsewhere-panel.open{grid-template-rows:1fr;}
+  .elsewhere-panel-inner{overflow:hidden;}
+  .elsewhere-list{margin-top:20px;padding-top:18px;border-top:1px solid rgba(12,13,16,0.08);display:flex;flex-direction:column;}
+  .elsewhere-row+.elsewhere-row{border-top:1px solid rgba(12,13,16,0.08);}
+  .elsewhere-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 4px;text-decoration:none;color:var(--ink);border-radius:4px;
+  }
+  .elsewhere-row:hover{background:rgba(201,162,39,0.06);}
+  .er-left{display:flex;align-items:center;gap:14px;}
+  .er-badge{
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(201,162,39,0.1);border:1px solid rgba(201,162,39,0.35);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--gold);flex-shrink:0;
+  }
+  .er-name{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+  .er-format{font-family:var(--sans);font-size:11px;color:var(--muted);}
+  .er-arrow{color:var(--muted);font-size:14px;}
+  .elsewhere-row:hover .er-arrow{color:var(--gold);}
+  .elsewhere-row:hover .er-name{color:var(--teal);}
+  @media(max-width:640px){
+    .elsewhere-section{padding:64px 22px 72px;}
+    .elsewhere-top{align-items:flex-start;}
+  }
+
   /* WHY READERS CHOOSE */
   .why-section{padding:96px 32px 100px;text-align:center;background:var(--cream);}
   .why-inner{max-width:1040px;margin:0 auto;}
@@ -969,6 +1013,57 @@
     </div>
   </div>
 </section>
+
+<section class="elsewhere-section" id="elsewhere">
+  <div class="wrap elsewhere-inner">
+    <div class="section-head">
+      <div class="section-label">Also Available</div>
+      <h2>Find Our Books Elsewhere</h2>
+      <p>Every title, listed once. As each book gets picked up by new retailers, it shows up here — no need to hunt through individual book pages.</p>
+    </div>
+
+    <div class="elsewhere-card">
+      <div class="elsewhere-top">
+        <button class="elsewhere-toggle" id="elsewhereToggle" type="button" onclick="toggleElsewhere()">
+          <span>2 retailers carry this title</span>
+          <span class="e-arrow">↗</span>
+        </button>
+      </div>
+      <div class="elsewhere-panel" id="elsewherePanel">
+        <div class="elsewhere-panel-inner">
+          <div class="elsewhere-list">
+            <a class="elsewhere-row" href="https://www.amazon.com/Elevate-Your-Life-Positive-Action-ebook/dp/B0FWX79Q59/" target="_blank" rel="noopener">
+              <div class="er-left">
+                <div class="er-badge">AM</div>
+                <div>
+                  <div class="er-name">Amazon</div>
+                  <div class="er-format">Kindle</div>
+                </div>
+              </div>
+              <div class="er-arrow">↗</div>
+            </a>
+            <a class="elsewhere-row" href="https://payhip.com/b/lyqxg" target="_blank" rel="noopener">
+              <div class="er-left">
+                <div class="er-badge">PH</div>
+                <div>
+                  <div class="er-name">Payhip</div>
+                  <div class="er-format">eBook</div>
+                </div>
+              </div>
+              <div class="er-arrow">↗</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function toggleElsewhere(){
+    document.getElementById('elsewhereToggle').classList.toggle('open');
+    document.getElementById('elsewherePanel').classList.toggle('open');
+  }
+</script>
 
 <section class="why-section" id="why">
   <div class="why-inner">
