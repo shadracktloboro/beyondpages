@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CX4H5LZT88"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CX4H5LZT88');
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beyond Pages — Shadrack Tloboro</title>
 <meta name="description" content="Books that turn insight into action, from author and speaker Shadrack Tloboro.">
+
+<!-- Social share preview tags (Open Graph + Twitter Card). -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Beyond Pages">
+<meta property="og:title" content="Beyond Pages — Shadrack Tloboro">
+<meta property="og:description" content="Books that turn insight into action, from author and speaker Shadrack Tloboro.">
+<meta property="og:url" content="https://shadracktloboro.github.io/beyondpages/">
+<meta property="og:image" content="https://shadracktloboro.github.io/beyondpages/assets/banner-journey-starts-here-cropped.png">
+<meta property="og:image:width" content="1565">
+<meta property="og:image:height" content="700">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beyond Pages — Shadrack Tloboro">
+<meta name="twitter:description" content="Books that turn insight into action, from author and speaker Shadrack Tloboro.">
+<meta name="twitter:image" content="https://shadracktloboro.github.io/beyondpages/assets/banner-journey-starts-here-cropped.png">
+
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
@@ -82,9 +107,10 @@
   .nav-search-btn:active{transform:scale(0.92);}
   @media(max-width:900px){
     .nav-search-btn{
-      position:fixed;top:9px;right:116px;z-index:1100;
-      width:40px;height:40px;
+      position:fixed;top:14.5px;right:104px;z-index:1100;
+      width:30px;height:30px;
     }
+    .nav-search-btn:active{transform:scale(0.92);}
   }
   .nav-links{display:flex;gap:30px;font-size:13px;letter-spacing:0.4px;color:var(--cream-2);}
   .nav-links a{opacity:0.82;transition:opacity .2s;}
@@ -144,14 +170,14 @@
   /* ---------- Mobile hamburger + slide-in nav ---------- */
   .menu-btn{
     display:none;
-    position:fixed;top:8px;right:20px;
-    width:44px;height:44px;
+    position:fixed;top:12.5px;right:20px;
+    width:34px;height:34px;
     flex-direction:column;align-items:center;justify-content:center;gap:5px;
     background:transparent;border:none;cursor:pointer;z-index:1100;
   }
   @media(max-width:900px){.menu-btn{display:flex;}}
   .menu-btn span{
-    width:24px;height:2px;background:var(--gold-light);border-radius:2px;
+    width:24px;height:1.5px;background:var(--gold-light);border-radius:1px;
     transition:transform .3s ease,opacity .3s ease;
   }
   .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -199,31 +225,28 @@
     text-align:center;
     overflow:hidden;
   }
-  .ribbon{
-    position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:2px;height:64px;
-    background:linear-gradient(var(--gold), transparent);
-    opacity:0.7;
+  .hero-art{
+    width:min(90%,600px);
+    margin:0 auto 8px;
   }
-  .hero-mark{
-    width:150px;height:150px;margin:0 auto 26px;
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid var(--gold);border-radius:50%;
-    overflow:hidden;background:var(--ink);
-  }
-  .hero-mark img{width:118%;height:118%;object-fit:cover;}
+  .hero-art img{width:100%;height:auto;display:block;}
+  .brand-mark{width:min(85%,460px);margin:0 auto 14px;}
+  .brand-mark img{width:100%;height:auto;display:block;}
+  .divider-mark{width:52%;max-width:300px;margin:0 auto 18px;}
+  .divider-mark img{width:100%;height:auto;display:block;}
   .eyebrow{
     font-size:11.5px;letter-spacing:4px;text-transform:uppercase;
-    color:var(--gold-light);margin-bottom:20px;font-weight:600;
+    margin-bottom:10px;font-weight:600;
+    white-space:nowrap;
   }
-  h1.brand{
-    font-family:var(--serif);font-weight:700;
-    font-size:clamp(40px,7vw,68px);
-    letter-spacing:1px;
-    color:var(--cream);
-    margin-bottom:22px;
+  .eyebrow-1{color:var(--cream-2);}
+  .eyebrow-2{color:var(--gold-light);margin-bottom:26px;}
+  @media(max-width:480px){
+    .eyebrow{font-size:10.5px;letter-spacing:2.2px;}
   }
-  h1.brand em{font-style:italic;color:var(--gold-light);}
+  @media(max-width:340px){
+    .eyebrow{font-size:9.5px;letter-spacing:1.5px;}
+  }
   .hero-pitch{
     font-family:var(--serif);font-style:italic;font-weight:500;
     font-size:clamp(19px,2.6vw,24px);
@@ -250,10 +273,43 @@
   .btn-ghost:hover{border-color:var(--gold);background:rgba(201,162,39,0.08);}
   .btn-ghost-glow{
     border-color:var(--gold);
-    box-shadow:0 0 10px rgba(201,162,39,0.394),0 0 22px rgba(201,162,39,0.216);
+    box-shadow:0 0 4px rgba(201,162,39,0.14),0 0 10px rgba(201,162,39,0.08);
     transition:box-shadow .3s,border-color .2s,background .2s;
   }
-  .btn-ghost-glow:hover{box-shadow:0 0 14px rgba(201,162,39,0.56),0 0 30px rgba(201,162,39,0.32);}
+  .btn-ghost-glow:hover{box-shadow:0 0 6px rgba(201,162,39,0.2),0 0 13px rgba(201,162,39,0.12);}
+
+  /* NEWSLETTER */
+  .newsletter{
+    background:var(--navy);
+    background-image:radial-gradient(circle at 18% 25%, rgba(201,162,39,0.10), transparent 55%),
+                      radial-gradient(circle at 85% 80%, rgba(44,80,73,0.35), transparent 55%);
+    padding:90px 32px;text-align:center;
+  }
+  .newsletter-inner{ max-width:600px;margin:0 auto; }
+  .newsletter-divider{width:44px;height:1px;background:var(--gold);margin:0 auto 22px;}
+  .newsletter h2{font-family:var(--serif);font-weight:700;color:var(--cream);font-size:clamp(30px,4vw,40px);margin-bottom:14px;}
+  .newsletter p{font-size:15.5px;line-height:1.7;color:rgba(245,241,232,0.7);max-width:460px;margin:0 auto 32px;}
+  .newsletter-form{ display:flex;flex-direction:column;gap:14px;max-width:440px;margin:0 auto; }
+  .newsletter-form-row{ display:flex;gap:12px; }
+  .newsletter-form input{
+    flex:1;width:100%;background:rgba(245,241,232,0.06);border:1px solid rgba(245,241,232,0.25);
+    color:var(--cream);padding:14px 16px;font-family:var(--sans);font-size:14.5px;
+    border-radius:2px;outline:none;transition:border-color .2s ease,background .2s ease;
+  }
+  .newsletter-form input:focus{border-color:var(--gold);background:rgba(245,241,232,0.09);}
+  .newsletter-form input::placeholder{color:rgba(245,241,232,0.45);}
+  .newsletter-form button{
+    background:var(--gold);color:var(--ink);font-weight:700;font-size:13px;letter-spacing:1.6px;
+    padding:15px 0;border:none;border-radius:2px;cursor:pointer;white-space:nowrap;
+    text-transform:uppercase;width:100%;transition:background .2s ease,transform .2s ease;
+  }
+  .newsletter-form button:hover{background:var(--gold-light);transform:translateY(-1px);}
+  .newsletter-note{margin-top:16px;font-size:12px;color:rgba(245,241,232,0.4);display:flex;align-items:center;justify-content:center;gap:6px;}
+  .newsletter-note svg{width:12px;height:12px;stroke:rgba(245,241,232,0.4);fill:none;stroke-width:2;}
+  @media(max-width:520px){
+    .newsletter-form-row{flex-direction:column;}
+    .newsletter{padding:56px 24px;}
+  }
 
   /* JOURNEY BANNER */
   .journey-banner{line-height:0;background:var(--ink);}
@@ -302,8 +358,11 @@
   .book-link{
     font-size:11.5px;font-weight:600;letter-spacing:0.5px;color:var(--teal);
     border-bottom:1px solid var(--teal-light);padding-bottom:1px;
+    display:inline-flex;align-items:center;gap:7px;
   }
   .book-link:hover{color:var(--gold);border-color:var(--gold);}
+  .book-link-arrow{width:18px;height:18px;flex-shrink:0;}
+  .book-link-arrow svg{width:100%;height:100%;display:block;}
 
   .book-rating{display:flex;align-items:center;gap:6px;}
   .book-rating-stars{display:flex;gap:1px;}
@@ -319,9 +378,9 @@
     display:inline-block;background:var(--ink);color:var(--gold-light);
     font-weight:600;font-size:13.5px;letter-spacing:0.6px;
     padding:15px 34px;border-radius:2px;border:1px solid var(--gold);
-    transition:background .2s;
+    transition:background .2s,transform .2s;
   }
-  .btn-dark:hover{background:var(--navy);}
+  .btn-dark:hover{background:var(--navy);transform:translateY(-1px);}
 
   /* STRIP */
   .strip{
@@ -349,9 +408,10 @@
     background:rgba(44,80,73,0.08);border:1px solid rgba(44,80,73,0.35);
     padding:10px 16px;border-radius:24px;white-space:nowrap;cursor:pointer;
     transition:background .15s ease,border-color .15s ease;flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
   }
   .elsewhere-toggle:hover{background:rgba(44,80,73,0.14);border-color:var(--teal);}
-  .elsewhere-toggle .e-arrow{font-size:13px;transition:transform .2s ease;color:var(--teal);}
+  .elsewhere-toggle .e-arrow{width:18px;height:18px;flex-shrink:0;transition:transform .2s ease;color:var(--teal);-webkit-tap-highlight-color:transparent;}
   .elsewhere-toggle.open .e-arrow{transform:rotate(90deg);}
   .elsewhere-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease;}
   .elsewhere-panel.open{grid-template-rows:1fr;}
@@ -361,18 +421,25 @@
   .elsewhere-row{
     display:flex;align-items:center;justify-content:space-between;
     padding:12px 4px;text-decoration:none;color:var(--ink);border-radius:4px;
+    -webkit-tap-highlight-color:transparent;
   }
   .elsewhere-row:hover{background:rgba(201,162,39,0.06);}
   .er-left{display:flex;align-items:center;gap:14px;}
   .er-badge{
     width:34px;height:34px;border-radius:50%;
-    background:rgba(201,162,39,0.1);border:1px solid rgba(201,162,39,0.35);
+    background:#fff;border:1px solid rgba(201,162,39,0.35);
     display:flex;align-items:center;justify-content:center;
     font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--gold);flex-shrink:0;
+    overflow:hidden;
   }
+  .er-badge img{width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;}
+  .er-badge img.er-logo-apple{padding:6px;}
+  .er-badge img.er-logo-amazon{object-position:50% 62%;}
+  .er-badge img.er-logo-storytel{padding:5px;}
+  .er-badge img.er-logo-bn{padding:9px;}
   .er-name{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
   .er-format{font-family:var(--sans);font-size:11px;color:var(--muted);}
-  .er-arrow{color:var(--muted);font-size:14px;}
+  .er-arrow{color:var(--muted);width:17px;height:17px;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
   .elsewhere-row:hover .er-arrow{color:var(--gold);}
   .elsewhere-row:hover .er-name{color:var(--teal);}
   @media(max-width:640px){
@@ -578,7 +645,7 @@
   .cart-fab:hover{
     transform:translateY(-4px) scale(1.05);
     border-color:var(--gold-light);
-    box-shadow:0 18px 40px -10px rgba(12,13,16,0.6),0 0 18px rgba(201,162,39,0.35);
+    box-shadow:0 18px 40px -10px rgba(12,13,16,0.6),0 0 12px rgba(201,162,39,0.25);
   }
   .cart-fab:hover svg{stroke:var(--gold);}
   .cart-fab:active{transform:translateY(0) scale(0.96);}
@@ -736,15 +803,159 @@
   @media (prefers-reduced-motion: reduce){
     .cart-overlay,.cart-panel,.cart-fab,.cart-badge,.cart-item,.book-add-btn{transition:none !important;animation:none !important;}
   }
+
+  /* ---------- FINAL PREMIUM POLISH ---------- */
+  /* Keep the existing structure; refine hierarchy, spacing and restraint only. */
+  .nav-inner{min-height:58px;}
+  .nav-left{gap:14px;}
+  .nav-right{gap:12px;}
+  .nav-links{gap:28px;}
+  .nav-search-btn{opacity:.78;}
+  .nav-search-btn svg{stroke-width:1.65;}
+  .menu-btn-desktop{width:32px;height:32px;}
+  .menu-btn-desktop span{height:1.5px;}
+
+  .hero{padding:84px 32px 82px;}
+  .hero-art{width:min(88%,600px);margin-bottom:12px;}
+  .hero-pitch{max-width:590px;margin-bottom:32px;}
+  .hero-ctas{gap:12px;}
+  .btn-primary,.btn-ghost{padding:14px 28px;}
+
+  .section-head{margin-bottom:48px;}
+  .section-head h2{letter-spacing:-.15px;}
+  .books-section{padding-top:88px;}
+  .book-grid{gap:30px;}
+  .book-cover{box-shadow:0 16px 34px -15px rgba(12,13,16,.28);}
+  .book-cover:hover{box-shadow:0 22px 42px -16px rgba(12,13,16,.34);}
+  .books-cta{margin-top:50px;}
+
+  /* More editorial, less UI-like newsletter treatment. */
+  .newsletter{
+    padding:82px 32px 86px;
+    background-image:
+      radial-gradient(circle at 15% 20%,rgba(201,162,39,.065),transparent 48%),
+      radial-gradient(circle at 88% 82%,rgba(44,80,73,.22),transparent 52%);
+    border-top:1px solid rgba(201,162,39,.10);
+    border-bottom:1px solid rgba(201,162,39,.10);
+  }
+  .newsletter-inner{max-width:620px;}
+  .newsletter-divider{width:36px;margin-bottom:20px;opacity:.9;}
+  .newsletter h2{font-size:clamp(31px,4vw,41px);letter-spacing:.1px;margin-bottom:12px;}
+  .newsletter p{max-width:500px;margin-bottom:28px;color:rgba(245,241,232,.68);}
+  .newsletter-form{max-width:500px;gap:11px;}
+  .newsletter-form-row{gap:10px;}
+  .newsletter-form input{
+    min-height:48px;padding:13px 15px;border-color:rgba(245,241,232,.22);
+    background:rgba(245,241,232,.045);
+  }
+  .newsletter-form input:focus{
+    border-color:rgba(227,197,101,.72);background:rgba(245,241,232,.065);
+    box-shadow:0 0 0 3px rgba(201,162,39,.08);
+  }
+  .newsletter-form button{min-height:48px;}
+  .newsletter-form button:hover{box-shadow:0 6px 18px rgba(201,162,39,.16);}
+  .newsletter-note{margin-top:14px;}
+
+  .why-section{padding-top:88px;}
+  .mission{padding:92px 32px;}
+  .about-author{padding:88px 32px;}
+  .podcast{padding:74px 32px;}
+  footer{padding-top:58px;}
+
+  /* Desktop consent bar: calmer typography and spacing, buttons stay sharp-cornered to match the rest of the site. */
+  @media(min-width:900px){
+    .bp-consent-card{
+      border-top:1px solid rgba(201,162,39,.22);
+      background:rgba(245,241,232,.98);
+    }
+    .bp-consent-body{padding:20px 32px 20px 40px;}
+    .bp-consent-body p{font-size:13.5px;line-height:1.55;max-width:900px;padding-right:28px;}
+    .bp-consent-body .bp-btn{
+      font-size:12.5px;letter-spacing:.45px;
+      padding:11px 24px;box-shadow:none;
+    }
+    .bp-btn-accept:hover{box-shadow:0 4px 12px rgba(201,162,39,.18);}
+    .bp-consent-close{width:34px;height:34px;box-shadow:none;border:1px solid rgba(12,13,16,.12);font-size:15px;}
+  }
+  @media(max-width:899px){
+    .newsletter{padding:64px 24px 68px;}
+    .hero{padding:72px 24px 70px;}
+  }
+  @media(max-width:520px){
+    .nav-inner{padding-left:22px;padding-right:22px;}
+    .newsletter{padding:58px 22px 62px;}
+    .newsletter h2{font-size:32px;}
+    .newsletter p{font-size:14.5px;line-height:1.68;}
+    .newsletter-form{max-width:360px;}
+    .newsletter-form input,.newsletter-form button{min-height:49px;}
+  }
 </style>
+
+<!-- Entity SEO: Schema.org structured data (JSON-LD) — Person/Organization/WebSite entity graph -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://shadracktloboro.github.io/beyondpages/#person",
+      "name": "Shadrack Tloboro",
+      "url": "https://shadracktloboro.github.io/beyondpages/",
+      "jobTitle": "Founder, Owner & CEO",
+      "description": "Author, speaker, and mentor dedicated to inspiring individuals to unlock their potential, overcome challenges, and create a life of meaning and impact.",
+      "image": "https://shadracktloboro.github.io/beyondpages/assets/author-shadrack-tloboro-cropped.png",
+      "worksFor": { "@id": "https://shadracktloboro.github.io/beyondpages/#organization" },
+      "affiliation": { "@id": "https://shadracktloboro.github.io/beyondpages/#organization" },
+      "sameAs": [
+        "https://linktr.ee/shadracktloboro",
+        "https://facebook.com/shadracktloboro",
+        "https://instagram.com/shadracktloboro",
+        "https://x.com/shadracktloboro",
+        "https://youtube.com/@shadracktloboro",
+        "https://tiktok.com/@shadracktloboro",
+        "https://payhip.com/shadracktloboro/collection/all",
+        "https://open.spotify.com/show/05zgQZFUFPz5BL1H7dE4X8"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://shadracktloboro.github.io/beyondpages/#organization",
+      "name": "Beyond Pages",
+      "url": "https://shadracktloboro.github.io/beyondpages/",
+      "logo": "https://shadracktloboro.github.io/beyondpages/assets/beyondpages-logo-transparent.png",
+      "description": "Books that turn insight into action, from author and speaker Shadrack Tloboro.",
+      "founder": { "@id": "https://shadracktloboro.github.io/beyondpages/#person" },
+      "sameAs": [
+        "https://linktr.ee/shadracktloboro",
+        "https://facebook.com/shadracktloboro",
+        "https://instagram.com/shadracktloboro",
+        "https://x.com/shadracktloboro",
+        "https://youtube.com/@shadracktloboro",
+        "https://tiktok.com/@shadracktloboro",
+        "https://payhip.com/shadracktloboro/collection/all",
+        "https://open.spotify.com/show/05zgQZFUFPz5BL1H7dE4X8"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://shadracktloboro.github.io/beyondpages/#website",
+      "url": "https://shadracktloboro.github.io/beyondpages/",
+      "name": "Beyond Pages — Shadrack Tloboro",
+      "description": "Books that turn insight into action, from author and speaker Shadrack Tloboro.",
+      "publisher": { "@id": "https://shadracktloboro.github.io/beyondpages/#organization" },
+      "about": { "@id": "https://shadracktloboro.github.io/beyondpages/#person" }
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
     <div class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;">
-      <img class="nav-mark" src="assets/beyondpages-logo-transparent.png" alt="">
-      Beyond Pages
+      <img class="nav-mark" src="assets/beyondpages-logo-transparent.png" alt="Beyond Pages">
     </div>
     <div class="nav-links">
       <a href="#books">Books</a>
@@ -857,15 +1068,13 @@
 </div>
 
 <header class="hero">
-  <div class="ribbon"></div>
-  <div class="hero-mark">
-    <picture>
-      <source srcset="assets/logo-animated.webp" type="image/webp">
-      <img src="assets/logo-animated.gif" alt="Beyond Pages animated logo">
-    </picture>
+  <div class="hero-art">
+    <img src="assets/hero-artwork.png" alt="Beyond Pages — open book with a golden path leading toward a sunrise over mountains, beneath a dove and stars">
   </div>
-  <div class="eyebrow">Inspire · Empower · Transform</div>
-  <h1 class="brand">Beyond <em>Pages</em></h1>
+  <h1 class="brand-mark"><img src="assets/wordmark-beyondpages.png" alt="Beyond Pages"></h1>
+  <div class="divider-mark"><img src="assets/hero-divider.png" alt=""></div>
+  <div class="eyebrow eyebrow-1">Inspire · Empower · Transform</div>
+  <div class="eyebrow eyebrow-2">Books · Insights · Impact</div>
   <p class="hero-pitch">Books that turn insight into action — for readers building a life on purpose, one deliberate page at a time.</p>
   <div class="hero-ctas">
     <a class="btn-primary" href="https://payhip.com/shadracktloboro/collection/all">Explore the Collection</a>
@@ -874,7 +1083,7 @@
 </header>
 
 <section class="journey-banner">
-  <img src="assets/banner-journey-starts-here-cropped.png" alt="Your journey starts here — explore the books shaping minds, one page at a time.">
+  <img loading="lazy" decoding="async" src="assets/banner-journey-starts-here-cropped.png" alt="Your journey starts here — explore the books shaping minds, one page at a time.">
 </section>
 
 <section class="books-section" id="books">
@@ -889,12 +1098,12 @@
       <div class="book-card">
         <div class="book-cover">
           <a href="https://payhip.com/b/58dUi" class="book-cover-link" aria-label="View Pressure Creates Diamonds">
-            <img src="assets/cover-pressure-creates-diamonds.png" alt="Pressure Creates Diamonds book cover">
+            <img loading="lazy" decoding="async" src="assets/cover-pressure-creates-diamonds.png" alt="Pressure Creates Diamonds book cover">
           </a>
         </div>
         <div class="book-meta">
           <span class="book-price">$14.99</span>
-          <a class="book-link" href="https://payhip.com/b/58dUi">View →</a>
+          <a class="book-link" href="https://payhip.com/b/58dUi">View <span class="book-link-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
         </div>
         <div class="book-rating" data-book-id="pressure-creates-diamonds">
           <div class="book-rating-stars"></div>
@@ -920,12 +1129,12 @@
       <div class="book-card">
         <div class="book-cover">
           <a href="https://payhip.com/b/lyqxg" class="book-cover-link" aria-label="View Elevate Your Life">
-            <img src="assets/cover-elevate-your-life.png" alt="Elevate Your Life book cover">
+            <img loading="lazy" decoding="async" src="assets/cover-elevate-your-life.png" alt="Elevate Your Life book cover">
           </a>
         </div>
         <div class="book-meta">
           <span class="book-price">$12.99</span>
-          <a class="book-link" href="https://payhip.com/b/lyqxg">View →</a>
+          <a class="book-link" href="https://payhip.com/b/lyqxg">View <span class="book-link-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
         </div>
         <div class="book-rating" data-book-id="elevate-your-life">
           <div class="book-rating-stars"></div>
@@ -951,12 +1160,12 @@
       <div class="book-card">
         <div class="book-cover">
           <a href="https://payhip.com/b/vgIsf" class="book-cover-link" aria-label="View Breakthrough Society">
-            <img src="assets/cover-breakthrough-society.png" alt="Breakthrough Society book cover">
+            <img loading="lazy" decoding="async" src="assets/cover-breakthrough-society.png" alt="Breakthrough Society book cover">
           </a>
         </div>
         <div class="book-meta">
           <span class="book-price">$14.99</span>
-          <a class="book-link" href="https://payhip.com/b/vgIsf">View →</a>
+          <a class="book-link" href="https://payhip.com/b/vgIsf">View <span class="book-link-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
         </div>
         <div class="book-rating" data-book-id="breakthrough-society">
           <div class="book-rating-stars"></div>
@@ -1025,8 +1234,8 @@
     <div class="elsewhere-card">
       <div class="elsewhere-top">
         <button class="elsewhere-toggle" id="elsewhereToggle" type="button" onclick="toggleElsewhere()">
-          <span>3 retailers carry this title</span>
-          <span class="e-arrow">↗</span>
+          <span>4 retailers carry this title</span>
+          <svg class="e-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
         </button>
       </div>
       <div class="elsewhere-panel" id="elsewherePanel">
@@ -1034,33 +1243,43 @@
           <div class="elsewhere-list">
             <a class="elsewhere-row" href="https://www.amazon.com/Elevate-Your-Life-Positive-Action-ebook/dp/B0FWX79Q59/" target="_blank" rel="noopener">
               <div class="er-left">
-                <div class="er-badge">AM</div>
+                <div class="er-badge"><img class="er-logo-amazon" loading="lazy" decoding="async" src="assets/retailer-logos/amazon.png" alt="Amazon" onerror="this.parentElement.textContent='AM';"></div>
                 <div>
                   <div class="er-name">Amazon</div>
                   <div class="er-format">Kindle</div>
                 </div>
               </div>
-              <div class="er-arrow">↗</div>
+              <div class="er-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:100%"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
             </a>
             <a class="elsewhere-row" href="https://books.apple.com/us/book/elevate-your-life/id6754186647" target="_blank" rel="noopener">
               <div class="er-left">
-                <div class="er-badge">AB</div>
+                <div class="er-badge"><img class="er-logo-apple" loading="lazy" decoding="async" src="assets/retailer-logos/apple-books.png" alt="Apple Books" onerror="this.parentElement.textContent='AB';"></div>
                 <div>
                   <div class="er-name">Apple Books</div>
                   <div class="er-format">eBook</div>
                 </div>
               </div>
-              <div class="er-arrow">↗</div>
+              <div class="er-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:100%"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
             </a>
             <a class="elsewhere-row" href="https://www.storytel.com/tv/books/elevate-your-life-the-power-of-positive-action-12720485" target="_blank" rel="noopener">
               <div class="er-left">
-                <div class="er-badge">ST</div>
+                <div class="er-badge"><img class="er-logo-storytel" loading="lazy" decoding="async" src="assets/retailer-logos/storytel.png" alt="Storytel" onerror="this.parentElement.textContent='ST';"></div>
                 <div>
                   <div class="er-name">Storytel</div>
                   <div class="er-format">eBook</div>
                 </div>
               </div>
-              <div class="er-arrow">↗</div>
+              <div class="er-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:100%"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+            </a>
+            <a class="elsewhere-row" href="https://www.barnesandnoble.com/w/elevate-your-life-shadrack-tloboro/1148559036?ean=2940182360494" target="_blank" rel="noopener">
+              <div class="er-left">
+                <div class="er-badge"><img class="er-logo-bn" loading="lazy" decoding="async" src="assets/retailer-logos/barnes-noble.png" alt="Barnes &amp; Noble" onerror="this.parentElement.textContent='BN';"></div>
+                <div>
+                  <div class="er-name">Barnes &amp; Noble</div>
+                  <div class="er-format">eBook</div>
+                </div>
+              </div>
+              <div class="er-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:100%"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
             </a>
           </div>
         </div>
@@ -1072,6 +1291,12 @@
   function toggleElsewhere(){
     document.getElementById('elsewhereToggle').classList.toggle('open');
     document.getElementById('elsewherePanel').classList.toggle('open');
+  }
+  function openElsewhereAndScroll(e){
+    e.preventDefault();
+    document.getElementById('elsewhereToggle').classList.add('open');
+    document.getElementById('elsewherePanel').classList.add('open');
+    document.getElementById('elsewhere').scrollIntoView({behavior:'smooth', block:'start'});
   }
 </script>
 
@@ -1090,8 +1315,8 @@
             <path d="M9.3 16.3 8 21l4-1.6L16 21l-1.3-4.7"/>
           </svg>
         </div>
-        <h3>Meaningful Stories</h3>
-        <p>Books created to inspire, challenge perspectives, and leave a lasting impression.</p>
+        <h3>Built to Be Used</h3>
+        <p>Every chapter ends with something to act on, not just something to think about.</p>
       </div>
 
       <div class="why-item">
@@ -1101,8 +1326,8 @@
             <path d="M13 8.2 21 6l-1 3M21 6l-3.4 1.9"/>
           </svg>
         </div>
-        <h3>Thoughtful Writing</h3>
-        <p>Carefully crafted words that connect with real experiences and everyday life.</p>
+        <h3>No Filler, No Fluff</h3>
+        <p>Short, direct chapters — written for people who read on a lunch break, not a retreat.</p>
       </div>
 
       <div class="why-item">
@@ -1113,8 +1338,8 @@
             <path d="M9.7 9.4c.5.35 1.1.55 1.8.55M8.9 12.9c.55.3 1.2.45 1.9.4M14.3 9.4c-.5.35-1.1.55-1.8.55M15.1 12.9c-.55.3-1.2.45-1.9.4"/>
           </svg>
         </div>
-        <h3>Inspiring Ideas</h3>
-        <p>Discover perspectives that encourage personal growth and positive action.</p>
+        <h3>From Real Setbacks</h3>
+        <p>Every book started with something that actually broke me first — then had to be rebuilt into something worth handing you.</p>
       </div>
 
       <div class="why-item">
@@ -1125,8 +1350,8 @@
             <path d="M8.4 7.3l5.6-1M8.9 10l4.6-.8M9.4 12.7l3.3-.6"/>
           </svg>
         </div>
-        <h3>Stories That Stay</h3>
-        <p>More than books — stories and lessons you can carry with you long after reading.</p>
+        <h3>One Thread, Every Book</h3>
+        <p>Different titles, different doors — each one walking you into the same idea from a new angle.</p>
       </div>
     </div>
   </div>
@@ -1144,11 +1369,11 @@
 <section class="about-author" id="about">
   <div class="wrap author-inner">
     <div class="author-photo">
-      <img src="assets/author-shadrack-tloboro-cropped.png" alt="Shadrack Tloboro">
+      <img loading="lazy" decoding="async" src="assets/author-shadrack-tloboro-cropped.png" alt="Shadrack Tloboro">
     </div>
     <div class="author-text">
       <div class="section-label">About the Author</div>
-      <img class="author-signature" src="assets/name-signature-cutout-v2.png" alt="Shadrack Tloboro">
+      <img class="author-signature" loading="lazy" decoding="async" src="assets/name-signature-cutout-v2.png" alt="Shadrack Tloboro">
       <p class="author-role">Author · Speaker · Mentor</p>
       <p>Dedicated to inspiring individuals to unlock their potential, overcome challenges, and create a life of meaning and impact.</p>
     </div>
@@ -1158,13 +1383,35 @@
 <section class="podcast" id="podcast">
   <div class="podcast-inner">
     <div class="podcast-art">
-      <img src="assets/podcast-cover.jpg" alt="State of Mind with Shadrack Tloboro podcast cover">
+      <img loading="lazy" decoding="async" src="assets/podcast-cover.jpg" alt="State of Mind with Shadrack Tloboro podcast cover">
     </div>
     <div class="podcast-text">
       <div class="podcast-eyebrow">The Podcast</div>
       <h3>State of Mind with Shadrack Tloboro</h3>
       <p>Conversations on growth, discipline, and rising above modern struggle — the ideas behind the books, unpacked out loud.</p>
       <a class="btn-ghost btn-ghost-glow" href="https://open.spotify.com/show/05zgQZFUFPz5BL1H7dE4X8?si=26294582dce84797" target="_blank" rel="noopener">Listen Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-divider"></div>
+    <h2>Stay in the Loop</h2>
+    <p>Join the Beyond Pages list for new releases, podcast episodes, and reflections that don't make it anywhere else.</p>
+    <form class="newsletter-form" action="https://formsubmit.co/shadracktloboro@proton.me" method="POST">
+      <input type="hidden" name="_subject" value="New Beyond Pages newsletter subscriber">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://shadracktloboro.github.io/beyondpages/thank-you.html">
+      <div class="newsletter-form-row">
+        <input type="email" name="email" placeholder="Enter your email" aria-label="Email address" autocomplete="email" inputmode="email" required>
+      </div>
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="newsletter-note">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.5"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      No spam. Unsubscribe anytime.
     </div>
   </div>
 </section>
@@ -1181,6 +1428,7 @@
         <a href="#books">Books</a>
         <a href="#mission">Mission</a>
         <a href="#podcast">Podcast</a>
+        <a href="#elsewhere" onclick="openElsewhereAndScroll(event)">Other Retailers</a>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
@@ -1188,6 +1436,11 @@
         <a href="https://linktr.ee/shadracktloboro">All Links</a>
         <a href="mailto:shadracktloboro@proton.me">Email</a>
         <a href="#" onclick="bpReopenCookieConsent();return false;">Cookie Settings</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
       </div>
     </div>
     <div class="footer-social">
@@ -1282,6 +1535,7 @@
       { title:"Self-Transformation & Achievement Bundle", type:"Bundle", desc:"Self-Transformation & Achievement Bundle — part of the Beyond Pages collection.", url:"https://payhip.com/b/sq5OS" },
       { title:"Browse the Full Catalog", type:"Page", desc:"Shop all books in the Beyond Pages collection on Payhip.", url:"https://payhip.com/shadracktloboro/collection/all" },
       { title:"Shop the Store", type:"Page", desc:"Shop the Beyond Pages store — books and more.", url:"https://payhip.com/shadracktloboro/collection/all" },
+      { title:"Find Our Books Elsewhere", type:"Section", desc:"Every title, listed once — see which other retailers (Amazon, Apple Books, Storytel, Barnes & Noble) carry each book.", url:"#elsewhere" },
       { title:"Mission", type:"Section", desc:"Written to Be Lived — Beyond Pages exists for readers who are done consuming advice and ready to act on it.", url:"#mission" },
       { title:"About the Author", type:"Section", desc:"Shadrack Tloboro — Author, Speaker, Mentor. Dedicated to helping readers unlock their potential and create a life of meaning.", url:"#about" },
       { title:"About Us", type:"Page", desc:"Learn more about Beyond Pages and author Shadrack Tloboro.", url:"https://payhip.com/shadracktloboro/about-us" },
@@ -1775,9 +2029,10 @@
   .nav-chat-btn:active{transform:scale(0.92);}
   @media(max-width:900px){
     .nav-chat-btn{
-      position:fixed;top:9px;right:68px;z-index:1100;
-      width:40px;height:40px;
+      position:fixed;top:14.5px;right:64px;z-index:1100;
+      width:30px;height:30px;
     }
+    .nav-chat-btn:active{transform:scale(0.92);}
   }
 
   #chatPanelOverlay{
@@ -1862,7 +2117,7 @@
   .bp-consent-card{
     width:100%; max-width:440px;
     background:var(--cream);
-    border-radius:18px 18px 0 0;
+    border-radius:10px 10px 0 0;
     box-shadow:0 -10px 34px rgba(0,0,0,.28);
     overflow:hidden;
     position:relative;
@@ -1870,7 +2125,7 @@
     font-family:var(--sans);
   }
   @media(min-width:560px){
-    .bp-consent-card{border-radius:16px; margin:0 0 28px;}
+    .bp-consent-card{border-radius:10px; margin:0 0 28px;}
   }
   @keyframes bpSlideUp{from{transform:translateY(36px);opacity:0;} to{transform:translateY(0);opacity:1;}}
 
@@ -1898,9 +2153,9 @@
   }
   .bp-btn{
     display:block; width:100%; text-align:center;
-    padding:13px 20px; border-radius:30px;
+    padding:13px 20px; border-radius:3px;
     font-size:14.5px; font-weight:700; font-family:var(--sans);
-    cursor:pointer; margin-bottom:10px; border:2px solid var(--gold);
+    cursor:pointer; margin-bottom:10px; border:1.5px solid var(--gold);
     transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
   }
   .bp-btn:active{transform:scale(0.98);}
@@ -1914,7 +2169,38 @@
   .bp-prefs-row{text-align:center; margin-top:2px;}
   .bp-prefs-row a{color:var(--gold); font-size:13px; text-decoration:underline; cursor:pointer;}
 
-
+  /* Desktop-only layout for the cookie/privacy banner, to match the reference image.
+     Mobile styles above are untouched. */
+  @media(min-width:900px){
+    #bpConsentOverlay{ justify-content:stretch; }
+    .bp-consent-card{
+      max-width:none; width:100%; margin:0;
+      border-radius:0; box-shadow:0 -8px 28px rgba(0,0,0,.18);
+      display:flex; align-items:center;
+    }
+    .bp-consent-banner{
+      height:auto; background:transparent; overflow:visible;
+      position:static; flex:0 0 auto; order:2;
+      display:flex; align-items:center; justify-content:center;
+      padding:0 40px 0 0;
+    }
+    .bp-consent-close{
+      position:static; top:auto; right:auto; margin:0;
+      width:36px; height:36px; flex:0 0 auto;
+      background:#fff; color:#17181d; box-shadow:0 3px 10px rgba(0,0,0,.22);
+    }
+    .bp-consent-body{
+      order:1; flex:1 1 auto;
+      display:flex; align-items:center; flex-wrap:nowrap;
+      padding:26px 32px 26px 40px;
+    }
+    .bp-consent-body p{ flex:1 1 auto; margin:0; padding-right:32px; max-width:820px; }
+    .bp-consent-body .bp-btn{
+      flex:0 0 auto; width:auto; display:inline-block;
+      margin:0 0 0 14px; padding:13px 30px; white-space:nowrap;
+    }
+    .bp-consent-body .bp-prefs-row{ display:none; }
+  }
 </style>
 
 <div id="bpConsentOverlay" class="bp-init-hidden">
