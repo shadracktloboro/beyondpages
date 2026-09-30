@@ -278,6 +278,38 @@
   }
   .btn-ghost-glow:hover{box-shadow:0 0 6px rgba(201,162,39,0.2),0 0 13px rgba(201,162,39,0.12);}
 
+  /* Spotify "Listen Now" - subtle gold shimmer travelling along the existing border */
+  .btn-ghost-glow{position:relative;}
+  .btn-ghost-glow::after{
+    content:"";position:absolute;inset:-1px;border-radius:inherit;
+    pointer-events:none;opacity:0;
+    background-repeat:no-repeat;
+    background-image:
+      linear-gradient(to right,rgba(242,217,138,0) 0%,rgba(242,217,138,.35) 55%,rgba(250,230,165,.95) 90%,rgba(250,230,165,0) 100%),
+      linear-gradient(to bottom,rgba(242,217,138,0) 0%,rgba(242,217,138,.35) 55%,rgba(250,230,165,.95) 90%,rgba(250,230,165,0) 100%),
+      linear-gradient(to left,rgba(242,217,138,0) 0%,rgba(242,217,138,.35) 55%,rgba(250,230,165,.95) 90%,rgba(250,230,165,0) 100%),
+      linear-gradient(to top,rgba(242,217,138,0) 0%,rgba(242,217,138,.35) 55%,rgba(250,230,165,.95) 90%,rgba(250,230,165,0) 100%);
+    background-size:30px 1px,1px 30px,30px 1px,1px 30px;
+    background-position:calc(0.00% + -30.00px) 0,100% calc(0.00% + -30.00px),calc(100.00% + 30.00px) 100%,0 calc(100.00% + 30.00px);
+    animation:bp-listen-shimmer 7.8s linear 1.2s infinite;
+  }
+  @keyframes bp-listen-shimmer{
+    0.00%{background-position:calc(0.00% + -30.00px) 0,100% calc(0.00% + -30.00px),calc(100.00% + 30.00px) 100%,0 calc(100.00% + 30.00px);opacity:0.00;}
+    2.51%{background-position:calc(15.27% + -20.84px) 0,100% calc(0.00% + -30.00px),calc(100.00% + 30.00px) 100%,0 calc(100.00% + 30.00px);opacity:0.95;}
+    13.49%{background-position:calc(81.93% + 19.16px) 0,100% calc(0.00% + -30.00px),calc(100.00% + 30.00px) 100%,0 calc(100.00% + 30.00px);opacity:0.95;}
+    16.46%{background-position:calc(100.00% + 30.00px) 0,100% calc(40.00% + -6.00px),calc(100.00% + 30.00px) 100%,0 calc(100.00% + 30.00px);opacity:0.95;}
+    17.95%{background-position:calc(100.00% + 30.00px) 0,100% calc(60.00% + 6.00px),calc(100.00% + 30.00px) 100%,0 calc(100.00% + 30.00px);opacity:0.95;}
+    20.92%{background-position:calc(100.00% + 30.00px) 0,100% calc(100.00% + 30.00px),calc(81.93% + 19.16px) 100%,0 calc(100.00% + 30.00px);opacity:0.95;}
+    30.87%{background-position:calc(100.00% + 30.00px) 0,100% calc(100.00% + 30.00px),calc(21.49% + -17.10px) 100%,0 calc(100.00% + 30.00px);opacity:0.95;}
+    31.44%{background-position:calc(100.00% + 30.00px) 0,100% calc(100.00% + 30.00px),calc(18.07% + -19.16px) 100%,0 calc(100.00% + 30.00px);opacity:0.84;}
+    34.41%{background-position:calc(100.00% + 30.00px) 0,100% calc(100.00% + 30.00px),calc(0.00% + -30.00px) 100%,0 calc(60.00% + 6.00px);opacity:0.28;}
+    35.90%{background-position:calc(100.00% + 30.00px) 0,100% calc(100.00% + 30.00px),calc(0.00% + -30.00px) 100%,0 calc(40.00% + -6.00px);opacity:0.00;}
+    100%{background-position:calc(100.00% + 30.00px) 0,100% calc(100.00% + 30.00px),calc(0.00% + -30.00px) 100%,0 calc(40.00% + -6.00px);opacity:0.00;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .btn-ghost-glow::after{animation:none !important;display:none;}
+  }
+
   /* NEWSLETTER */
   .newsletter{
     background:var(--navy);
