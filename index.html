@@ -292,8 +292,10 @@
     background-size:56px 2px,2px 56px,56px 2px,2px 56px;
     background-position:calc(0.00% + -56.00px) 0,100% calc(0.00% + -56.00px),calc(100.00% + 56.00px) 100%,0 calc(100.00% + 56.00px);
     filter:drop-shadow(0 0 2px rgba(255,236,170,.9)) drop-shadow(0 0 6px rgba(226,180,60,.55));
-    animation:bp-listen-shimmer 5.2s linear 1.2s infinite;
+    animation:bp-listen-shimmer 5.2s linear 1.2s 3;
   }
+  /* Shimmer waits until the button scrolls into view (class removed by the small script at the end of the page) */
+  .btn-ghost-glow.bp-shimmer-wait::after{animation:none;}
   @keyframes bp-listen-shimmer{
     0.00%{background-position:calc(0.00% + -56.00px) 0,100% calc(0.00% + -56.00px),calc(100.00% + 56.00px) 100%,0 calc(100.00% + 56.00px);opacity:0.00;}
     2.57%{background-position:calc(11.46% + -43.17px) 0,100% calc(0.00% + -56.00px),calc(100.00% + 56.00px) 100%,0 calc(100.00% + 56.00px);opacity:1.00;}
@@ -2387,6 +2389,21 @@
   }
 
   document.querySelectorAll('.book-rating').forEach(initRow);
+</script>
+<script>
+/* Start the Listen Now shimmer (3 rotations) only when the button scrolls into view */
+(function(){
+  var el=document.querySelector('.btn-ghost-glow');
+  if(!el||!('IntersectionObserver' in window)) return;
+  el.classList.add('bp-shimmer-wait');
+  var io=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      el.classList.remove('bp-shimmer-wait');
+      io.disconnect();
+    }
+  },{threshold:0.9,rootMargin:'0px 0px -12% 0px'});
+  io.observe(el);
+})();
 </script>
 </body>
 </html>
