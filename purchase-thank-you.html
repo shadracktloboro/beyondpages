@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Thank You — Beyond Pages</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Same tokens as the Beyond Pages site */
+  :root{
+    --ink:#0c0d10; --navy:#12141c; --gold:#c9a227; --gold-light:#e3c565;
+    --cream:#f5f1e8; --cream-2:#ece5d3; --muted:#8f8b7f;
+    --serif:'Cormorant Garamond',serif; --sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);color:var(--cream);-webkit-font-smoothing:antialiased;
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    background:radial-gradient(ellipse 900px 520px at 50% -10%, #22273a 0%, var(--navy) 55%, var(--ink) 100%) fixed;
+  }
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;}
+
+  header{padding:36px 24px 0;text-align:center;}
+  header img{width:88px;height:auto;margin:0 auto;}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px 64px;}
+  .confirm{width:100%;max-width:520px;text-align:center;}
+
+  .tick{width:44px;height:44px;margin:0 auto 28px;display:block;}
+  .tick circle{fill:none;stroke:var(--gold);stroke-width:1.25;opacity:.55;}
+  .tick path{fill:none;stroke:var(--gold-light);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:24;stroke-dashoffset:24;animation:draw .9s .25s ease-out forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6.4vw,50px);line-height:1.1;margin-bottom:18px;}
+  .lead{font-size:16px;line-height:1.75;color:rgba(245,241,232,.78);margin-bottom:6px;}
+  .divider{display:block;width:min(240px,60%);height:auto;margin:30px auto;opacity:.9;}
+
+  .book{display:none;align-items:center;gap:16px;text-align:left;max-width:360px;margin:0 auto 30px;
+    padding:14px 0;border-top:1px solid rgba(245,241,232,.12);border-bottom:1px solid rgba(245,241,232,.12);}
+  .book.show{display:flex;}
+  .book img{width:56px;height:auto;border-radius:2px;flex:none;}
+  .book-title{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.2;}
+  .book-sub{font-size:13px;color:var(--muted);margin-top:4px;}
+
+  .note{font-size:14.5px;line-height:1.7;color:rgba(245,241,232,.7);max-width:430px;margin:0 auto 32px;scroll-margin-top:24px;}
+  .note strong{color:var(--cream);font-weight:600;}
+
+  .btn-primary{
+    display:inline-flex;align-items:center;justify-content:center;min-height:52px;
+    background:var(--gold);color:var(--ink);font-weight:700;font-size:14px;letter-spacing:.6px;
+    padding:15px 36px;border-radius:2px;transition:background .2s,transform .2s;
+  }
+  .btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);}
+  .secondary{display:block;margin-top:22px;font-size:14px;color:var(--gold-light);letter-spacing:.3px;
+    padding:10px;transition:color .2s;}
+  .secondary:hover{color:var(--cream);}
+
+  footer{padding:28px 24px 34px;text-align:center;border-top:1px solid rgba(245,241,232,.08);
+    font-size:12px;color:var(--muted);line-height:1.9;}
+  footer .foot-tag{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--cream-2);opacity:.85;}
+
+  @media (max-width:480px){
+    header{padding-top:28px;}
+    main{padding:36px 20px 48px;}
+    .btn-primary{width:100%;}
+    .book{max-width:100%;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .tick path{animation:none;stroke-dashoffset:0;}
+    .btn-primary{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://shadracktloboro.github.io/beyondpages/" aria-label="Beyond Pages home">
+    <img src="assets/beyondpages-logo-transparent.png" alt="Beyond Pages" width="88">
+  </a>
+</header>
+
+<main>
+  <section class="confirm" aria-labelledby="ty-title">
+    <svg class="tick" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20.5"/><path d="M13.5 22.5l6 6 11-12.5"/></svg>
+
+    <h1 id="ty-title">Thank You for Your Purchase</h1>
+    <p class="lead">Your order was successfully completed.</p>
+    <p class="lead">Thank you for choosing Beyond Pages and supporting our work.</p>
+
+    <img class="divider" src="assets/hero-divider.png" alt="" width="668" height="50">
+
+    <!-- Filled in only when the redirect URL carries ?book=… (see CONFIG below) -->
+    <div class="book" id="book" aria-live="polite">
+      <img id="bookCover" src="" alt="">
+      <div>
+        <div class="book-title" id="bookTitle"></div>
+        <div class="book-sub">E-book</div>
+      </div>
+    </div>
+
+    <p class="note" id="email-note" tabindex="-1">
+      Your e-book is ready for you. <strong>Payhip has emailed your download link</strong> to the address you used at checkout. If it hasn't arrived in a few minutes, please check your spam or promotions folder.
+    </p>
+
+    <a class="btn-primary" id="accessBtn" href="#email-note">Access Your Book</a>
+    <a class="secondary" href="https://shadracktloboro.github.io/beyondpages/">Continue Exploring Beyond Pages</a>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-tag">Built for readers ready to act.</div>
+  <div>&copy; Beyond Pages &middot; Shadrack Tloboro</div>
+</footer>
+
+<script>
+/* ------------------------------------------------------------------
+   CONFIG — the only part you need to edit.
+
+   Payhip's checkout redirect does NOT pass the buyer's order or download
+   link to your page. So this page:
+   1. Tells the buyer their Payhip email contains the download link.
+   2. Can show the right book if you give each product its own redirect URL:
+        purchase-thank-you.html?book=elevate-your-life
+   3. Sends "Access Your Book" to a link you choose (accessUrl). Leave it
+      empty ("") and the button simply takes the buyer to the email note.
+   ------------------------------------------------------------------ */
+var CONFIG = {
+  accessUrl: "",   // e.g. a Payhip page you trust for customer access. Empty = scroll to email note.
+  books: {
+    "pressure-creates-diamonds": { title: "Pressure Creates Diamonds", cover: "assets/cover-pressure-creates-diamonds.png" },
+    "elevate-your-life":         { title: "Elevate Your Life",         cover: "assets/cover-elevate-your-life.png" },
+    "breakthrough-society":      { title: "Breakthrough Society",      cover: "assets/cover-breakthrough-society.png" }
+  }
+};
+
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var key = (params.get("book") || "").toLowerCase();
+  var book = Object.prototype.hasOwnProperty.call(CONFIG.books, key) ? CONFIG.books[key] : null;
+
+  if (book) {
+    document.getElementById("bookTitle").textContent = book.title;
+    var img = document.getElementById("bookCover");
+    img.src = book.cover;
+    img.alt = book.title + " book cover";
+    document.getElementById("book").classList.add("show");
+  }
+
+  var btn = document.getElementById("accessBtn");
+  if (CONFIG.accessUrl && /^https:\/\/([a-z0-9-]+\.)*payhip\.com\//i.test(CONFIG.accessUrl)) {
+    btn.href = CONFIG.accessUrl;
+    btn.rel = "noopener";
+  } else {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var note = document.getElementById("email-note");
+      note.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+      note.focus({ preventScroll: true });
+    });
+  }
+})();
+</script>
+</body>
+</html>
