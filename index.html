@@ -96,6 +96,8 @@
     color:var(--cream);letter-spacing:0.5px;
   }
   .nav-mark{height:38px;width:auto;flex-shrink:0;}
+  .nav-wordmark{height:15px;width:auto;flex-shrink:0;display:block;}
+  @media(min-width:901px){.nav-wordmark{height:17px;}}
 
   /* SEARCH TRIGGER */
   .nav-search-btn{
@@ -222,39 +224,24 @@
   /* HERO */
   .hero{
     position:relative;
-    background:
-      radial-gradient(ellipse 900px 500px at 50% -12%, #22273a 0%, var(--navy) 55%, var(--ink) 100%);
+    background-color:#000000;
     color:var(--cream);
-    padding:0 0 90px;
+    padding:44px 0 72px;
     text-align:center;
     overflow:hidden;
   }
   .hero-copy{padding:0 32px;}
-  .hero-art{
-    width:100%;
-    margin:0 0 56px;
+  .hero-product{
+    width:min(52vw,210px);
+    margin:44px auto 0;
     line-height:0;
-    background:linear-gradient(to bottom,
-      #bfbfbf 0%,#c9c9c9 10%,#d2d2d2 20%,#d8d8d8 30%,#dbdbdb 40%,#dcdcdc 50%,
-      #dcdcdc 60%,#d2d2d2 70%,#d2d2d2 80%,#d8d8d8 90%,#d5d5d5 100%);
   }
-  .hero-art img{
-    display:block;
-    width:100%;
-    max-width:720px;
-    height:auto;
-    margin:0 auto;
-    /* soft-fade the photo edges into the full-width backdrop so it reads edge to edge */
-    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%),
-                       linear-gradient(to bottom,transparent 0,#000 4%,#000 96%,transparent 100%);
-    -webkit-mask-composite:source-in;
-    mask-image:linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%),
-               linear-gradient(to bottom,transparent 0,#000 4%,#000 96%,transparent 100%);
-    mask-composite:intersect;
+  .hero-product img{
+    display:block;width:100%;height:auto;
+    filter:drop-shadow(0 22px 28px rgba(0,0,0,.75)) drop-shadow(0 6px 10px rgba(0,0,0,.55));
   }
-  @media(max-width:720px){
-    .hero-art img{max-width:none;-webkit-mask-image:none;mask-image:none;}
-  }
+  @media(min-width:721px){.hero-product{width:300px;margin-top:56px;}}
+  @media(min-width:1000px){.hero-product{width:340px;}}
   .brand-mark{width:min(85%,460px);margin:0 auto 14px;}
   .brand-mark img{width:100%;height:auto;display:block;}
   .divider-mark{width:52%;max-width:300px;margin:0 auto 18px;}
@@ -861,10 +848,9 @@
   .menu-btn-desktop{width:32px;height:32px;}
   .menu-btn-desktop span{height:1.5px;}
 
-  .hero{padding:0 0 82px;}
+  .hero{padding:56px 0 84px;}
   .hero-copy{padding:0 32px;}
-  .hero-art{margin-bottom:64px;}
-  .hero-pitch{max-width:590px;margin-bottom:32px;}
+  .hero-pitch{max-width:590px;margin-bottom:30px;}
   .hero-ctas{gap:12px;}
   .btn-primary,.btn-ghost{padding:14px 28px;}
 
@@ -926,9 +912,8 @@
   }
   @media(max-width:899px){
     .newsletter{padding:64px 24px 68px;}
-    .hero{padding:0 0 70px;}
+    .hero{padding:44px 0 64px;}
     .hero-copy{padding:0 24px;}
-    .hero-art{margin-bottom:44px;}
   }
   @media(max-width:520px){
     .nav-inner{padding-left:22px;padding-right:22px;}
@@ -1004,7 +989,7 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;">
-      <img class="nav-mark" src="assets/beyondpages-logo-transparent.png" alt="Beyond Pages">
+      <img class="nav-wordmark" src="assets/wordmark-beyondpages-nav.png" width="1000" height="106" alt="Beyond Pages">
     </div>
     <div class="nav-links">
       <a href="#books">Books</a>
@@ -1117,9 +1102,6 @@
 </div>
 
 <header class="hero">
-  <div class="hero-art">
-    <img src="assets/hero-book-elevate-your-life.jpg" width="1091" height="976" fetchpriority="high" decoding="async" alt="Elevate Your Life: The Power of Positive Action by Shadrack Tloboro — hardcover book mockup, one standing on another">
-  </div>
   <div class="hero-copy">
     <h1 class="brand-mark"><img src="assets/wordmark-beyondpages.png" alt="Beyond Pages"></h1>
     <div class="divider-mark"><img src="assets/hero-divider.png" alt=""></div>
@@ -1128,6 +1110,9 @@
       <a class="btn-primary" href="https://payhip.com/shadracktloboro/collection/all">Explore the Collection</a>
       <a class="btn-ghost" href="#mission">Our Mission</a>
     </div>
+  </div>
+  <div class="hero-product">
+    <img src="assets/hero-book-elevate-your-life.png" width="825" height="928" decoding="async" alt="Elevate Your Life: The Power of Positive Action by Shadrack Tloboro — hardcover book, one standing on another">
   </div>
 </header>
 
