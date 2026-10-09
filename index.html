@@ -96,8 +96,6 @@
     color:var(--cream);letter-spacing:0.5px;
   }
   .nav-mark{height:38px;width:auto;flex-shrink:0;}
-  .nav-wordmark{height:15px;width:auto;flex-shrink:0;display:block;}
-  @media(min-width:901px){.nav-wordmark{height:17px;}}
 
   /* SEARCH TRIGGER */
   .nav-search-btn{
@@ -224,40 +222,30 @@
   /* HERO */
   .hero{
     position:relative;
-    background-color:#000000;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -12%, #22273a 0%, var(--navy) 55%, var(--ink) 100%);
     color:var(--cream);
-    padding:44px 0 72px;
+    padding:96px 32px 90px;
     text-align:center;
     overflow:hidden;
   }
-  .hero-copy{padding:0 32px;}
-  .hero-product{
-    position:relative;isolation:isolate;
-    width:min(52vw,210px);
-    margin:44px auto 0;
-    line-height:0;
+  .hero-book{
+    position:relative;
+    width:min(100%,500px);
+    margin:44px auto -6%;
   }
-  /* soft purple ambient glow behind the book, picked from the cover's own violet */
-  .hero-product::before{
-    content:"";position:absolute;z-index:-1;pointer-events:none;
-    inset:-30% -70% -22% -70%;
-    background:
-      radial-gradient(ellipse 50% 46% at 50% 46%, rgba(138,104,255,.46) 0%, rgba(120,88,235,.22) 45%, rgba(96,70,200,0) 74%);
-    filter:blur(14px);
+  .hero-book::before{ /* soft spotlight behind the product */
+    content:"";position:absolute;left:50%;top:48%;
+    width:150%;height:80%;transform:translate(-50%,-50%);
+    background:radial-gradient(ellipse at center,rgba(140,120,230,.28) 0%,rgba(140,120,230,0) 65%);
+    pointer-events:none;
   }
-  /* faint violet pool of light under the books, so they feel grounded */
-  .hero-product::after{
-    content:"";position:absolute;z-index:-1;pointer-events:none;
-    left:-18%;right:-18%;bottom:-6%;height:16%;
-    background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(150,118,255,.30) 0%, rgba(150,118,255,0) 72%);
-    filter:blur(8px);
+  .hero-book img{
+    position:relative;
+    width:100%;height:auto;display:block;
+    margin-top:-9%;
+    filter:drop-shadow(0 28px 40px rgba(0,0,0,.55));
   }
-  .hero-product img{
-    display:block;width:100%;height:auto;
-    filter:drop-shadow(0 22px 28px rgba(0,0,0,.75)) drop-shadow(0 6px 10px rgba(0,0,0,.55));
-  }
-  @media(min-width:721px){.hero-product{width:300px;margin-top:56px;}}
-  @media(min-width:1000px){.hero-product{width:340px;}}
   .brand-mark{width:min(85%,460px);margin:0 auto 14px;}
   .brand-mark img{width:100%;height:auto;display:block;}
   .divider-mark{width:52%;max-width:300px;margin:0 auto 18px;}
@@ -864,9 +852,9 @@
   .menu-btn-desktop{width:32px;height:32px;}
   .menu-btn-desktop span{height:1.5px;}
 
-  .hero{padding:56px 0 84px;}
-  .hero-copy{padding:0 32px;}
-  .hero-pitch{max-width:590px;margin-bottom:30px;}
+  .hero{padding:84px 32px 82px;}
+  .hero-book{width:min(56%,560px);margin-top:36px;}
+  .hero-pitch{max-width:590px;margin-bottom:32px;}
   .hero-ctas{gap:12px;}
   .btn-primary,.btn-ghost{padding:14px 28px;}
 
@@ -928,8 +916,7 @@
   }
   @media(max-width:899px){
     .newsletter{padding:64px 24px 68px;}
-    .hero{padding:44px 0 64px;}
-    .hero-copy{padding:0 24px;}
+    .hero{padding:72px 24px 70px;}
   }
   @media(max-width:520px){
     .nav-inner{padding-left:22px;padding-right:22px;}
@@ -1005,7 +992,7 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;">
-      <img class="nav-wordmark" src="assets/wordmark-beyondpages-nav.png" width="1000" height="106" alt="Beyond Pages">
+      <img class="nav-mark" src="assets/beyondpages-logo-transparent.png" alt="Beyond Pages">
     </div>
     <div class="nav-links">
       <a href="#books">Books</a>
@@ -1118,17 +1105,15 @@
 </div>
 
 <header class="hero">
-  <div class="hero-copy">
-    <h1 class="brand-mark"><img src="assets/wordmark-beyondpages.png" alt="Beyond Pages"></h1>
-    <div class="divider-mark"><img src="assets/hero-divider.png" alt=""></div>
-    <p class="hero-pitch">Books that turn insight into action — for readers building a life on purpose, one deliberate page at a time.</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="https://payhip.com/shadracktloboro/collection/all">Explore the Collection</a>
-      <a class="btn-ghost" href="#mission">Our Mission</a>
-    </div>
+  <h1 class="brand-mark"><img src="assets/wordmark-beyondpages.png" alt="Beyond Pages"></h1>
+  <div class="divider-mark"><img src="assets/hero-divider.png" alt=""></div>
+  <p class="hero-pitch">Books that turn insight into action — for readers building a life on purpose, one deliberate page at a time.</p>
+  <div class="hero-ctas">
+    <a class="btn-primary" href="https://payhip.com/shadracktloboro/collection/all">Explore the Collection</a>
+    <a class="btn-ghost" href="#mission">Our Mission</a>
   </div>
-  <div class="hero-product">
-    <img src="assets/hero-book-elevate-your-life.png" width="825" height="928" decoding="async" alt="Elevate Your Life: The Power of Positive Action by Shadrack Tloboro — hardcover book, one standing on another">
+  <div class="hero-book">
+    <img src="assets/hero-book-elevate-your-life.png" width="864" height="1210" fetchpriority="high" decoding="async" alt="Elevate Your Life: The Power of Positive Action by Shadrack Tloboro — hardcover book standing on a second copy">
   </div>
 </header>
 
