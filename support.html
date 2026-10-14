@@ -191,23 +191,21 @@
 (function(){
   var card = document.getElementById('supportCard');
   var holder = document.getElementById('supportCardForm');
-  var MIN_W = 320;            // narrowest width the Donorbox form is designed for
+  var MIN_W = 320;            // narrowest width Donorbox designs the form for
+  var MAX_W = 425;            // widest width Donorbox designs the form for
   var wrap = null;
   var loaded = false;
+  // Lay the form out at a width Donorbox is happy with, then scale it so it
+  // fills the box edge to edge on every screen (phone, tablet, desktop).
   function fit(){
     if(!wrap || holder.hasAttribute('hidden')) return;
     var avail = holder.clientWidth;
     if(!avail) return;
-    if(avail < MIN_W){
-      var z = avail / MIN_W;
-      wrap.style.width = MIN_W + 'px';
-      wrap.style.transform = 'scale(' + z + ')';
-      holder.style.height = Math.ceil(wrap.offsetHeight * z) + 'px';
-    } else {
-      wrap.style.width = '100%';
-      wrap.style.transform = '';
-      holder.style.height = '';
-    }
+    var d = Math.max(MIN_W, Math.min(MAX_W, avail));
+    var z = avail / d;
+    wrap.style.width = d + 'px';
+    wrap.style.transform = (Math.abs(z - 1) < 0.005) ? '' : 'scale(' + z + ')';
+    holder.style.height = Math.ceil(wrap.offsetHeight * z) + 'px';
   }
   window.addEventListener('resize', fit);
   window.addEventListener('orientationchange', fit);
