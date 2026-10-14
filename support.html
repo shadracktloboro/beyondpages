@@ -82,11 +82,12 @@
   .support-pay.card:hover{border-color:var(--gold);background:rgba(201,162,39,.08);}
   .support-pay[aria-disabled="true"]{opacity:.45;pointer-events:none;}
   .support-pay svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
-  .support-card-form{margin-top:14px;}
+  .support-card-form{margin:14px -28px 0;width:auto;max-width:none;min-width:0;overflow:hidden;}
   .support-card-form[hidden]{display:none;}
-  .support-card-form{width:100%;max-width:100%;min-width:0;}
-  .support-card-form dbox-widget{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;}
+  .support-card-form dbox-widget{display:block;width:100%;max-width:none;min-width:0;box-sizing:border-box;}
   .support-card-form iframe{max-width:100%;}
+  .support-card-fit{transform-origin:top left;max-width:none;}
+  @media(max-width:640px){.support-card-form{margin-left:-18px;margin-right:-18px;}}
   .support-note{margin-top:16px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;}
   .support-note svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:2;flex-shrink:0;}
   .support-growth{max-width:520px;margin:34px auto 0;}
@@ -190,28 +191,55 @@
 (function(){
   var card = document.getElementById('supportCard');
   var holder = document.getElementById('supportCardForm');
+  var MIN_W = 320;            // narrowest width the Donorbox form is designed for
+  var wrap = null;
   var loaded = false;
+  function fit(){
+    if(!wrap || holder.hasAttribute('hidden')) return;
+    var avail = holder.clientWidth;
+    if(!avail) return;
+    if(avail < MIN_W){
+      var z = avail / MIN_W;
+      wrap.style.width = MIN_W + 'px';
+      wrap.style.transform = 'scale(' + z + ')';
+      holder.style.height = Math.ceil(wrap.offsetHeight * z) + 'px';
+    } else {
+      wrap.style.width = '100%';
+      wrap.style.transform = '';
+      holder.style.height = '';
+    }
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', fit);
   card.addEventListener('click', function(e){
     e.preventDefault();
     var open = holder.hasAttribute('hidden');
     if(open){ holder.removeAttribute('hidden'); } else { holder.setAttribute('hidden',''); }
     if(open && !loaded){
+      wrap = document.createElement('div');
+      wrap.className = 'support-card-fit';
       var w = document.createElement('dbox-widget');
+      // let the form fill its box instead of Donorbox's default 320-425px limits
+      w.style.minWidth = '0px';
+      w.style.minInlineSize = '0px';
+      w.style.maxInlineSize = 'none';
       w.setAttribute('campaign', 'support-us-972810');
       w.setAttribute('type', 'donation_form');
       w.setAttribute('interval', '1 M');
       w.setAttribute('enable-auto-scroll', 'true');
-      holder.appendChild(w);
+      wrap.appendChild(w);
+      holder.appendChild(wrap);
+      fit();
+      if(window.ResizeObserver){ new ResizeObserver(fit).observe(wrap); }
       var sc = document.createElement('script');
       sc.type = 'module';
       sc.src = 'https://donorbox.org/widgets.js';
       sc.async = true;
       document.head.appendChild(sc);
       loaded = true;
-      // let the widget re-measure once it has rendered
-      [400, 1200, 2500].forEach(function(t){
-        setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, t);
-      });
+      [400, 1200, 2500].forEach(function(t){ setTimeout(fit, t); });
+    } else if(open){
+      fit();
     }
     card.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
