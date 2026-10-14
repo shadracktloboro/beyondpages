@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Us — Beyond Pages</title>
+<meta name="description" content="Support the Beyond Pages mission. Your contribution helps us sustain and expand our books, conversations, and content.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c0d10;
+    --navy:#12141c;
+    --teal:#2c5049;
+    --gold:#c9a227;
+    --gold-light:#e3c565;
+    --cream:#f5f1e8;
+    --cream-2:#ece5d3;
+    --muted:#8f8b7f;
+    --muted-dark:#5c594e;
+    --serif:'Cormorant Garamond',serif;
+    --sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .legal-hero{background:var(--ink);color:var(--cream);text-align:center;padding:30px 24px 28px;border-bottom:1px solid rgba(201,162,39,.25);}
+  .legal-hero .brand{font-family:var(--serif);font-weight:700;color:var(--gold-light);font-size:19px;letter-spacing:0.5px;}
+  .back-wrap{max-width:640px;margin:0 auto;padding:26px 24px 0;}
+  .back-link{display:inline-block;font-size:13.5px;color:var(--muted-dark);}
+  .back-link:hover{color:var(--teal);}
+  .section-label{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:10px;}
+  .support{background:var(--cream);padding:34px 32px 100px;text-align:center;scroll-margin-top:64px;}
+  .support-inner{max-width:640px;margin:0 auto;}
+  .support-divider{width:1px;height:44px;background:var(--gold);margin:0 auto 26px;}
+  .support h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4.4vw,38px);line-height:1.15;margin-bottom:18px;color:var(--ink);}
+  .support-lede{font-size:16px;line-height:1.75;color:var(--muted-dark);max-width:540px;margin:0 auto;}
+  .support-lede + .support-lede{margin-top:14px;}
+  .support-panel{
+    margin:44px auto 0;max-width:560px;background:#fff;text-align:left;
+    border:1px solid rgba(201,162,39,.35);border-radius:6px;padding:30px 28px 26px;
+    box-shadow:0 20px 44px -18px rgba(12,13,16,.28);
+  }
+  .support-panel h3{font-family:var(--serif);font-weight:700;font-size:25px;text-align:center;color:var(--ink);margin-bottom:4px;}
+  .support-sub{text-align:center;font-size:14px;color:var(--muted-dark);margin-bottom:22px;}
+  .support-amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .support-amt{
+    font-family:var(--serif);font-weight:700;font-size:23px;color:var(--ink);
+    background:var(--cream);border:1px solid rgba(12,13,16,.14);border-radius:2px;
+    padding:14px 0;cursor:pointer;transition:border-color .2s,background .2s,color .2s,transform .15s;
+  }
+  .support-amt:hover{border-color:var(--gold);}
+  .support-amt:active{transform:scale(.97);}
+  .support-amt[aria-pressed="true"]{background:var(--ink);border-color:var(--gold);color:var(--gold-light);}
+  .support-custom{
+    margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--cream);
+    border:1px solid rgba(12,13,16,.14);border-radius:2px;padding:0 16px;transition:border-color .2s;
+  }
+  .support-custom:focus-within{border-color:var(--gold);}
+  .support-custom span{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--gold);}
+  .support-custom input{
+    flex:1;min-width:0;border:none;background:transparent;outline:none;
+    font-family:var(--sans);font-size:15px;color:var(--ink);padding:15px 0;
+  }
+  .support-custom input::placeholder{color:var(--muted);}
+  .support-total{text-align:center;margin:20px 0 16px;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted-dark);font-weight:600;}
+  .support-total b{display:block;font-family:var(--serif);font-size:34px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:2px;}
+  .support-pay{
+    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;
+    padding:16px 0;border-radius:2px;cursor:pointer;text-decoration:none;
+    transition:background .2s,transform .2s,opacity .2s;
+  }
+  .support-pay + .support-pay{margin-top:10px;}
+  .support-pay.paypal{background:var(--gold);color:var(--ink);border:1px solid var(--gold);}
+  .support-pay.paypal:hover{background:var(--gold-light);transform:translateY(-1px);}
+  .support-pay.card{background:transparent;color:var(--ink);border:1px solid rgba(12,13,16,.35);}
+  .support-pay.card:hover{border-color:var(--gold);background:rgba(201,162,39,.08);}
+  .support-pay[aria-disabled="true"]{opacity:.45;pointer-events:none;}
+  .support-pay svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
+  .support-note{margin-top:16px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;}
+  .support-note svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:2;flex-shrink:0;}
+  .support-growth{max-width:520px;margin:34px auto 0;}
+  .support-growth h4{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);margin-bottom:8px;}
+  .support-growth p{font-size:15px;line-height:1.7;color:var(--muted-dark);}
+  @media(max-width:640px){
+    .support{padding:24px 22px 76px;}
+    .support-panel{padding:26px 18px 22px;margin-top:36px;}
+    .support-amt{font-size:21px;padding:13px 0;}
+  }
+
+  .page-foot{background:var(--ink);color:rgba(245,241,232,.55);text-align:center;font-size:12.5px;padding:26px 24px;}
+  .page-foot a{color:var(--gold-light);}
+</style>
+</head>
+<body>
+<div class="legal-hero"><div class="brand">Beyond Pages</div></div>
+<div class="back-wrap"><a class="back-link" href="index.html">&larr; Back to Beyond Pages</a></div>
+
+<main class="support" id="support">
+  <div class="support-inner">
+    <div class="support-divider"></div>
+    <div class="section-label">Support Us</div>
+    <h2>Support the Mission, Propel the Movement</h2>
+    <p class="support-lede">Beyond Pages is dedicated to empowering readers, leaders, and creators through impactful books, conversations, and content. Your support helps us sustain and expand our initiatives.</p>
+    <p class="support-lede">For those moved to contribute directly, we've made it simple. Every gesture, big or small, keeps this work sustainable. Thank you for your continued belief.</p>
+
+    <div class="support-panel">
+      <h3>Choose Your Contribution</h3>
+      <p class="support-sub">Select an amount, or enter your own.</p>
+      <div class="support-amounts" id="supportAmounts" role="group" aria-label="Contribution amount in US dollars">
+        <button type="button" class="support-amt" data-amt="3" aria-pressed="false">$3</button>
+        <button type="button" class="support-amt" data-amt="5" aria-pressed="false">$5</button>
+        <button type="button" class="support-amt" data-amt="10" aria-pressed="true">$10</button>
+        <button type="button" class="support-amt" data-amt="20" aria-pressed="false">$20</button>
+        <button type="button" class="support-amt" data-amt="50" aria-pressed="false">$50</button>
+        <button type="button" class="support-amt" data-amt="100" aria-pressed="false">$100</button>
+      </div>
+      <label class="support-custom">
+        <span>$</span>
+        <input type="number" id="supportCustom" min="1" step="1" inputmode="decimal" placeholder="Enter your own amount" aria-label="Custom contribution amount in US dollars">
+      </label>
+      <div class="support-total">Your contribution<b id="supportTotal">$10</b></div>
+      <a class="support-pay paypal" id="supportPaypal" href="#" target="_blank" rel="noopener noreferrer">
+        Give with PayPal
+      </a>
+      <a class="support-pay card" id="supportCard" href="https://buymeacoffee.com/shadracktloboro" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path></svg>
+        Pay with Card
+      </a>
+      <div class="support-note">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        Secure checkout through PayPal or Buy Me a Coffee · Contributions are not tax-deductible.
+      </div>
+    </div>
+
+    <div class="support-growth">
+      <h4>Fuel Our Growth</h4>
+      <p>Larger contributions help us fund new books, leadership resources, and podcast episodes. Enter any amount above to partner with us in scaling this work.</p>
+    </div>
+  </div>
+</main>
+
+<div class="page-foot">© 2026 Beyond Pages · <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a> · <a href="refund-policy.html">Refund Policy</a></div>
+
+<script>
+(function(){
+  var PAYPAL_USER = 'Shadracktloboro';
+  var amt = 10;
+  var btns = document.querySelectorAll('#supportAmounts .support-amt');
+  var custom = document.getElementById('supportCustom');
+  var total = document.getElementById('supportTotal');
+  var pp = document.getElementById('supportPaypal');
+  function fmt(n){ return '$' + (n % 1 === 0 ? n : n.toFixed(2)); }
+  function render(){
+    var ok = amt >= 1 && amt <= 10000;
+    total.textContent = ok ? fmt(amt) : '$0';
+    var url = ok ? 'https://www.paypal.me/' + PAYPAL_USER + '/' + amt.toFixed(2) + 'USD' : '#';
+    pp.href = url;
+    pp.setAttribute('aria-disabled', ok ? 'false' : 'true');
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      amt = parseFloat(b.getAttribute('data-amt'));
+      custom.value = '';
+      btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      render();
+    });
+  });
+  custom.addEventListener('input', function(){
+    amt = Math.round((parseFloat(custom.value) || 0) * 100) / 100;
+    btns.forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+    render();
+  });
+  render();
+})();
+</script>
+
+
+</body>
+</html>
