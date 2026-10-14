@@ -82,6 +82,11 @@
   .support-pay.card:hover{border-color:var(--gold);background:rgba(201,162,39,.08);}
   .support-pay[aria-disabled="true"]{opacity:.45;pointer-events:none;}
   .support-pay svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
+  .support-card-form{margin-top:14px;}
+  .support-card-form[hidden]{display:none;}
+  .support-card-form{width:100%;max-width:100%;min-width:0;}
+  .support-card-form dbox-widget{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;}
+  .support-card-form iframe{max-width:100%;}
   .support-note{margin-top:16px;font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;}
   .support-note svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:2;flex-shrink:0;}
   .support-growth{max-width:520px;margin:34px auto 0;}
@@ -128,10 +133,11 @@
       <a class="support-pay paypal" id="supportPaypal" href="#" target="_blank" rel="noopener noreferrer">
         Give with PayPal
       </a>
-      <a class="support-pay card" id="supportCard" href="https://buymeacoffee.com/shadracktloboro" target="_blank" rel="noopener noreferrer">
+      <a class="support-pay card" id="supportCard" href="#" role="button" aria-expanded="false" aria-controls="supportCardForm">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18"></path></svg>
         Pay with Card
       </a>
+      <div id="supportCardForm" class="support-card-form" hidden></div>
       <div class="support-note">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
         Secure checkout through PayPal or Buy Me a Coffee · Contributions are not tax-deductible.
@@ -177,6 +183,38 @@
     render();
   });
   render();
+})();
+</script>
+
+<script>
+(function(){
+  var card = document.getElementById('supportCard');
+  var holder = document.getElementById('supportCardForm');
+  var loaded = false;
+  card.addEventListener('click', function(e){
+    e.preventDefault();
+    var open = holder.hasAttribute('hidden');
+    if(open){ holder.removeAttribute('hidden'); } else { holder.setAttribute('hidden',''); }
+    if(open && !loaded){
+      var w = document.createElement('dbox-widget');
+      w.setAttribute('campaign', 'support-us-972810');
+      w.setAttribute('type', 'donation_form');
+      w.setAttribute('interval', '1 M');
+      w.setAttribute('enable-auto-scroll', 'true');
+      holder.appendChild(w);
+      var sc = document.createElement('script');
+      sc.type = 'module';
+      sc.src = 'https://donorbox.org/widgets.js';
+      sc.async = true;
+      document.head.appendChild(sc);
+      loaded = true;
+      // let the widget re-measure once it has rendered
+      [400, 1200, 2500].forEach(function(t){
+        setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, t);
+      });
+    }
+    card.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
 })();
 </script>
 
