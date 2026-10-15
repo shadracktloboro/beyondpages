@@ -612,11 +612,12 @@
   .search-overlay{
     position:fixed;inset:0;z-index:1200;
     background:rgba(12,13,16,0.72);backdrop-filter:blur(4px);
-    opacity:0;pointer-events:none;transition:opacity .28s ease;
+    opacity:0;pointer-events:none;transition:opacity .28s ease,visibility 0s linear .28s;
+    visibility:hidden;
     display:flex;align-items:flex-start;justify-content:center;
     padding:80px 20px 20px;overflow-y:auto;
   }
-  .search-overlay.open{opacity:1;pointer-events:auto;}
+  .search-overlay.open{opacity:1;pointer-events:auto;visibility:visible;transition-delay:0s;}
   .search-modal{
     width:100%;max-width:600px;
     background:var(--navy);border:1px solid rgba(201,162,39,0.35);
@@ -1793,9 +1794,10 @@
     }
 
     function closeSearch(){
+      input.blur();
       overlay.classList.remove('open');
       document.body.style.overflow = '';
-      if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus({ preventScroll: true });
     }
 
     openBtn.addEventListener('click', openSearch);
