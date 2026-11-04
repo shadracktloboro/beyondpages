@@ -1536,6 +1536,66 @@
   .bp-rr-row::-webkit-scrollbar{display:none;}
   .bp-rr-rows{-webkit-mask-image:none;mask-image:none;}
 }
+
+/* REVIEW SUBMISSION — scoped with .bp-rv prefix; only used by the Reader Reviews section */
+.bp-rv-cta{text-align:center;margin-top:52px;padding:0 24px;}
+.bp-rv-cta::before{content:"";display:block;width:64px;height:1px;background:var(--gold);margin:0 auto 34px;}
+.bp-rv-invite{font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,26px);line-height:1.35;color:var(--cream);margin-bottom:22px;}
+.bp-rv-open{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 36px;
+  background:transparent;border:1px solid var(--gold);border-radius:999px;cursor:pointer;
+  color:var(--gold-light);font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  transition:background .2s,color .2s;
+}
+.bp-rv-open:hover{background:var(--gold);color:var(--ink);}
+.bp-rv-open:focus-visible,.bp-rv-submit:focus-visible,.bp-rv-x:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;}
+.bp-rv-note{margin-top:16px;font-size:13px;color:rgba(236,229,211,0.72);}
+.bp-rv-dialog{
+  margin:auto;padding:0;width:min(580px,calc(100vw - 32px));max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;
+  background:var(--navy);color:var(--cream);font-family:var(--sans);
+  border:1px solid rgba(201,162,39,0.4);border-radius:16px;
+}
+.bp-rv-dialog::backdrop{background:rgba(5,5,5,0.78);}
+.bp-rv-form{position:relative;padding:36px 44px;display:flex;flex-direction:column;gap:18px;}
+.bp-rv-x{position:absolute;top:14px;right:16px;width:44px;height:44px;background:transparent;border:0;border-radius:50%;cursor:pointer;color:var(--cream-2);font-size:26px;line-height:1;}
+.bp-rv-eyebrow{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-light);}
+.bp-rv-title{font-family:var(--serif);font-weight:600;font-size:clamp(28px,5vw,38px);line-height:1.1;margin:8px 0 6px;color:var(--cream);}
+.bp-rv-sub{font-size:14px;line-height:1.5;color:rgba(236,229,211,0.72);}
+.bp-rv-form fieldset{border:0;min-width:0;display:flex;flex-direction:column;gap:8px;}
+.bp-rv-form legend{padding:0;margin-bottom:8px;}
+.bp-rv-lbl{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a39e90;}
+.bp-rv-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.bp-rv-pill{position:relative;display:inline-flex;}
+.bp-rv-pill input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;}
+.bp-rv-pill span{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid #3a372e;border-radius:999px;font-size:13px;color:var(--cream);transition:border-color .2s,background .2s,color .2s;}
+.bp-rv-pill input:checked + span{border-color:var(--gold);background:rgba(201,162,39,0.14);color:var(--gold-light);font-weight:500;}
+.bp-rv-pill input:focus-visible + span{outline:2px solid var(--gold-light);outline-offset:2px;}
+.bp-rv-stars{display:inline-flex;flex-direction:row-reverse;justify-content:flex-end;align-self:flex-start;}
+.bp-rv-stars input{position:absolute;opacity:0;width:1px;height:1px;}
+.bp-rv-stars label{font-size:32px;line-height:1;padding:4px 3px;cursor:pointer;color:#4a463a;transition:color .15s;}
+.bp-rv-stars input:checked ~ label,.bp-rv-stars label:hover,.bp-rv-stars label:hover ~ label{color:var(--gold);}
+.bp-rv-stars input:focus-visible + label{outline:2px solid var(--gold-light);outline-offset:2px;border-radius:4px;}
+.bp-rv-row{display:flex;gap:14px;}
+.bp-rv-field{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;}
+.bp-rv-form input[type=text],.bp-rv-form input[type=email],.bp-rv-form textarea{
+  width:100%;background:var(--ink);border:1px solid #3a372e;border-radius:8px;color:var(--cream);
+  font-family:var(--sans);font-size:15px;padding:0 14px;height:46px;
+}
+.bp-rv-form textarea{height:104px;padding:12px 14px;resize:none;}
+.bp-rv-form input::placeholder,.bp-rv-form textarea::placeholder{color:#7d786b;}
+.bp-rv-form input[type=text]:focus,.bp-rv-form input[type=email]:focus,.bp-rv-form textarea:focus{outline:2px solid var(--gold-light);outline-offset:1px;border-color:var(--gold);}
+.bp-rv-consent{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;color:#a39e90;}
+.bp-rv-consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--gold);}
+.bp-rv-foot2{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.bp-rv-foot2 span{font-size:12px;color:#a39e90;}
+.bp-rv-submit{min-height:48px;padding:0 34px;background:var(--gold);border:0;border-radius:999px;cursor:pointer;color:var(--ink);font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;}
+.bp-rv-status{min-height:20px;font-size:13px;line-height:1.5;color:var(--gold-light);}
+@media(max-width:560px){
+  .bp-rv-form{padding:30px 22px 24px;}
+  .bp-rv-row{flex-direction:column;}
+  .bp-rv-form input[type=text],.bp-rv-form input[type=email],.bp-rv-form textarea{font-size:16px;}
+  .bp-rv-foot2{flex-direction:column-reverse;align-items:stretch;text-align:center;}
+}
 </style>
 
 <!-- READER REVIEWS & SOCIAL PROOF (standalone section) -->
@@ -1550,7 +1610,87 @@
     <div class="bp-rr-row bp-rr-ltr"><div class="bp-rr-track"><figure class="bp-rr-card"><figcaption class="bp-rr-name">Marcus T.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Short chapters, real action steps. I finished it in a week and actually changed my mornings.</blockquote><div class="bp-rr-book">Elevate Your Life</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Naledi M.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">I read this during the hardest season of my year. It felt like someone finally understood.</blockquote><div class="bp-rr-book">Pressure Creates Diamonds</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Daniel R.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">No fluff. Every page gave me something to do, not just something to think about.</blockquote><div class="bp-rr-book">Breakthrough Society</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Amara O.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">The way it connects faith and practical habits is powerful. I’ve already gifted two copies.</blockquote><div class="bp-rr-book">Elevate Your Life</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Josh K.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Reframed how I see setbacks. I keep coming back to the chapter on pressure.</blockquote><div class="bp-rr-book">Pressure Creates Diamonds</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Thandi P.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Honest, grounded and motivating without feeling preachy. Exactly what I needed.</blockquote><div class="bp-rr-book">Breakthrough Society</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Chris L.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Perfect lunch-break read. I highlighted half the book.</blockquote><div class="bp-rr-book">Elevate Your Life</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Lerato S.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">This book pushed me to finally start what I’d been putting off for years.</blockquote><div class="bp-rr-book">Pressure Creates Diamonds</div></figure></div></div>
     <div class="bp-rr-row bp-rr-rtl"><div class="bp-rr-track"><figure class="bp-rr-card"><figcaption class="bp-rr-name">Sarah W.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Clear, direct and encouraging. It turned my good intentions into a daily plan.</blockquote><div class="bp-rr-book">Elevate Your Life</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Tebogo N.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">I felt stuck for months. Two chapters in, I had a next step and the courage to take it.</blockquote><div class="bp-rr-book">Breakthrough Society</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Michael B.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Powerful message, beautifully told. A book I’ll reread every year.</blockquote><div class="bp-rr-book">Pressure Creates Diamonds</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Priya D.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Practical and uplifting. My whole book club is reading it next.</blockquote><div class="bp-rr-book">Elevate Your Life</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Kagiso M.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Speaks straight to the heart. You can tell it was written from real experience.</blockquote><div class="bp-rr-book">Breakthrough Society</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Emily H.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Short, sharp and meaningful. It gave me perspective when I needed it most.</blockquote><div class="bp-rr-book">Pressure Creates Diamonds</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Sipho D.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Motivating without the hype. I recommend it to everyone around me.</blockquote><div class="bp-rr-book">Elevate Your Life</div></figure><figure class="bp-rr-card"><figcaption class="bp-rr-name">Grace A.</figcaption><div class="bp-rr-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#bp-rr-star"/></svg></div><blockquote class="bp-rr-text">Instant download, easy to read on my phone, and it stayed with me all week.</blockquote><div class="bp-rr-book">Breakthrough Society</div></figure></div></div>
   </div>
+  <div class="bp-rv-cta">
+    <p class="bp-rv-invite">Read one of our books? Tell the next reader what it was really like.</p>
+    <button type="button" class="bp-rv-open" data-bp-rv-open>Write a Review</button>
+    <p class="bp-rv-note">Every review is read and approved before it appears.</p>
+  </div>
   <div class="bp-rr-foot"><a class="bp-rr-link" href="#books">Find Your Next Read</a></div>
+  <dialog class="bp-rv-dialog" id="bp-rv-dialog" aria-labelledby="bp-rv-title">
+    <form class="bp-rv-form" id="bp-rv-form" novalidate>
+      <button type="button" class="bp-rv-x" data-bp-rv-close aria-label="Close review form">&times;</button>
+      <div>
+        <div class="bp-rv-eyebrow">Your Review</div>
+        <h2 class="bp-rv-title" id="bp-rv-title">Share Your Honest Review</h2>
+        <p class="bp-rv-sub">Your words help the next reader decide. We read every review before it is shown.</p>
+      </div>
+      <fieldset>
+        <legend class="bp-rv-lbl">Which book?</legend>
+        <div class="bp-rv-pills">
+          <label class="bp-rv-pill"><input type="radio" name="bp-rv-book" value="Pressure Creates Diamonds"><span>Pressure Creates Diamonds</span></label>
+          <label class="bp-rv-pill"><input type="radio" name="bp-rv-book" value="Elevate Your Life"><span>Elevate Your Life</span></label>
+          <label class="bp-rv-pill"><input type="radio" name="bp-rv-book" value="Breakthrough Society"><span>Breakthrough Society</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend class="bp-rv-lbl">Your rating</legend>
+        <div class="bp-rv-stars">
+          <input type="radio" name="bp-rv-rating" id="bp-rv-r5" value="5"><label for="bp-rv-r5" title="5 stars"><span aria-hidden="true">&#9733;</span><span class="bp-rv-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">5 stars</span></label>
+          <input type="radio" name="bp-rv-rating" id="bp-rv-r4" value="4"><label for="bp-rv-r4" title="4 stars"><span aria-hidden="true">&#9733;</span><span class="bp-rv-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">4 stars</span></label>
+          <input type="radio" name="bp-rv-rating" id="bp-rv-r3" value="3"><label for="bp-rv-r3" title="3 stars"><span aria-hidden="true">&#9733;</span><span class="bp-rv-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">3 stars</span></label>
+          <input type="radio" name="bp-rv-rating" id="bp-rv-r2" value="2"><label for="bp-rv-r2" title="2 stars"><span aria-hidden="true">&#9733;</span><span class="bp-rv-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">2 stars</span></label>
+          <input type="radio" name="bp-rv-rating" id="bp-rv-r1" value="1"><label for="bp-rv-r1" title="1 star"><span aria-hidden="true">&#9733;</span><span class="bp-rv-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">1 star</span></label>
+        </div>
+      </fieldset>
+      <div class="bp-rv-row">
+        <div class="bp-rv-field">
+          <label class="bp-rv-lbl" for="bp-rv-name">Name (shown)</label>
+          <input id="bp-rv-name" type="text" placeholder="e.g. Thandi P." autocomplete="given-name">
+        </div>
+        <div class="bp-rv-field">
+          <label class="bp-rv-lbl" for="bp-rv-email">Email (private)</label>
+          <input id="bp-rv-email" type="email" placeholder="Never shown on the site" autocomplete="email">
+        </div>
+      </div>
+      <div class="bp-rv-field">
+        <label class="bp-rv-lbl" for="bp-rv-text">Your review</label>
+        <textarea id="bp-rv-text" placeholder="What did the book do for you? What would you tell a friend?"></textarea>
+      </div>
+      <label class="bp-rv-consent"><input type="checkbox" id="bp-rv-ok"><span>I am happy for Beyond Pages to show my review and first name on this site.</span></label>
+      <div class="bp-rv-status" id="bp-rv-status" role="status" aria-live="polite"></div>
+      <div class="bp-rv-foot2">
+        <span>Reviews appear after approval.</span>
+        <button type="submit" class="bp-rv-submit">Submit Review</button>
+      </div>
+    </form>
+  </dialog>
+  <script>
+  (function(){
+    var dlg=document.getElementById('bp-rv-dialog'),form=document.getElementById('bp-rv-form'),st=document.getElementById('bp-rv-status');
+    if(!dlg||!form) return;
+    function open(){ st.textContent=''; if(dlg.showModal){ dlg.showModal(); } else { dlg.setAttribute('open',''); } }
+    function close(){ if(dlg.close){ dlg.close(); } else { dlg.removeAttribute('open'); } }
+    document.querySelectorAll('[data-bp-rv-open]').forEach(function(b){ b.addEventListener('click',open); });
+    dlg.querySelector('[data-bp-rv-close]').addEventListener('click',close);
+    dlg.addEventListener('click',function(e){ if(e.target===dlg) close(); });
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var book=form.querySelector('input[name="bp-rv-book"]:checked'),rate=form.querySelector('input[name="bp-rv-rating"]:checked');
+      var name=document.getElementById('bp-rv-name').value.trim(),email=document.getElementById('bp-rv-email').value.trim(),text=document.getElementById('bp-rv-text').value.trim();
+      var ok=document.getElementById('bp-rv-ok').checked;
+      if(!book){ st.textContent='Please choose which book you are reviewing.'; return; }
+      if(!rate){ st.textContent='Please choose a star rating.'; return; }
+      if(!name){ st.textContent='Please add your name.'; return; }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ st.textContent='Please add a valid email address (it is never shown).'; return; }
+      if(text.length<10){ st.textContent='Please write a little more about your experience.'; return; }
+      if(!ok){ st.textContent='Please tick the box to allow us to show your review.'; return; }
+      var subject=encodeURIComponent('Reader review: '+book.value+' ('+rate.value+'/5)');
+      var body=encodeURIComponent('Book: '+book.value+'\nRating: '+rate.value+'/5\nName: '+name+'\nEmail: '+email+'\nPermission to show on the site: Yes\n\nReview:\n'+text);
+      st.textContent='Your email app should now open with your review ready. Please press Send to submit it. Thank you!';
+      window.location.href='mailto:shadracktloboro@proton.me?subject='+subject+'&body='+body;
+    });
+  })();
+  </script>
 </section>
 
 
