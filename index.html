@@ -573,6 +573,10 @@
   .author-role{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:18px;}
   .author-text p:last-child{font-size:15.5px;line-height:1.7;color:var(--muted-dark);max-width:440px;}
   @media(max-width:640px){.author-inner{text-align:center;justify-content:center;} .author-text{text-align:center;} .author-text p:last-child{margin:0 auto;}}
+  /* Author bio paragraphs: same look as the original description line */
+  .author-text .author-role + p,.author-text .author-role + p ~ p{font-size:15.5px;line-height:1.7;color:var(--muted-dark);max-width:440px;}
+  .author-text .author-role + p ~ p{margin-top:12px;}
+  @media(max-width:640px){.author-text .author-role + p,.author-text .author-role + p ~ p{margin-left:auto;margin-right:auto;}}
 
   /* PODCAST */
   .podcast{background:var(--navy);color:var(--cream);padding:80px 32px;}
@@ -1713,6 +1717,8 @@
       <img class="author-signature" loading="lazy" decoding="async" src="assets/name-signature-cutout-v2.png" alt="Shadrack Tloboro">
       <p class="author-role">Author · Speaker · Mentor</p>
       <p>Dedicated to inspiring individuals to unlock their potential, overcome challenges, and create a life of meaning and impact.</p>
+      <p>Shadrack Tloboro is a writer and personal development advocate whose work is rooted in one conviction: that every human being carries within them the capacity to rise, heal, and shine — no matter what they have been through.</p>
+      <p>Writing from lived experience and hard-won wisdom, Shadrack speaks to the person who is still in the middle of the struggle and refuses to tell them it will be easy.</p>
     </div>
   </div>
 </section>
