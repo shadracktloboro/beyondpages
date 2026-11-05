@@ -460,6 +460,20 @@
   .strip-num{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--gold-light);}
   .strip-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,241,232,0.78);margin-top:6px;}
 
+  /* STRIP – scroll-triggered entrance animation (additive only) */
+  .strip{overflow-x:hidden;}
+  .bp-strip-anim .strip-item[data-bp-from]{
+    opacity:0;
+    transition:opacity .9s cubic-bezier(.22,1,.36,1), transform 1s cubic-bezier(.22,1,.36,1);
+    will-change:opacity,transform;
+  }
+  .bp-strip-anim .strip-item[data-bp-from="left"]{transform:translateX(-80px);}
+  .bp-strip-anim .strip-item[data-bp-from="right"]{transform:translateX(80px);}
+  .bp-strip-anim .strip-item[data-bp-from].bp-in{opacity:1;transform:translateX(0);}
+  @media (prefers-reduced-motion: reduce){
+    .bp-strip-anim .strip-item[data-bp-from]{opacity:1;transform:none;transition:none;}
+  }
+
   /* FIND OUR BOOKS ELSEWHERE */
   .elsewhere-section{padding:88px 32px 92px;background:var(--cream-2);}
   .elsewhere-inner{max-width:920px;}
@@ -1286,7 +1300,7 @@
 
 <section class="strip">
   <div class="strip-inner">
-    <div class="strip-item">
+    <div class="strip-item" data-bp-from="left">
       <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="#e3c565" stroke-width="1.4">
         <path d="M12 7.2c-1.7-1.5-4-1.9-6.3-1.5-.3.05-.5.3-.5.6v11c0 .4.35.65.7.6 2.1-.35 4.2 0 6.1 1.6 1.9-1.6 4-1.95 6.1-1.6.35.05.7-.2.7-.6v-11c0-.3-.2-.55-.5-.6-2.3-.4-4.6 0-6.3 1.5Z" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M12 7.2V19" stroke-linecap="round"/>
@@ -1295,14 +1309,14 @@
       <div class="strip-num">3</div>
       <div class="strip-label">Titles</div>
     </div>
-    <div class="strip-item">
+    <div class="strip-item" data-bp-from="right">
       <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="#e3c565" stroke-width="1.4">
         <path d="M12 4v10m0 0-3.5-3.5M12 14l3.5-3.5M6 17.5v1A1.5 1.5 0 0 0 7.5 20h9a1.5 1.5 0 0 0 1.5-1.5v-1" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="strip-num">100%</div>
       <div class="strip-label">Digital &amp; Instant</div>
     </div>
-    <div class="strip-item">
+    <div class="strip-item" data-bp-from="left">
       <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="#e3c565" stroke-width="1.4">
         <path d="M7.5 18a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1.78A4.5 4.5 0 0 1 16.5 18h-9Z" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -2725,6 +2739,28 @@
     }
   },{threshold:0.9,rootMargin:'0px 0px -12% 0px'});
   io.observe(el);
+})();
+</script>
+<script>
+/* Stats strip: slide items in from the sides when scrolled into view */
+(function(){
+  var strip=document.querySelector('.strip');
+  if(!strip||!('IntersectionObserver' in window)) return;
+  var items=strip.querySelectorAll('.strip-item[data-bp-from]');
+  if(!items.length) return;
+  strip.classList.add('bp-strip-anim');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('bp-in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.25,rootMargin:'0px 0px -8% 0px'});
+  items.forEach(function(el,i){
+    el.style.transitionDelay=(i*0.12)+'s';
+    io.observe(el);
+  });
 })();
 </script>
 </body>
