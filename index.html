@@ -2805,7 +2805,7 @@
 </script>
 <style>
 /* HERO SYNC — book cover mirrors the hover/press state of the collection button (slightly stronger lift than the base hover) */
-.hero-book-link.is-synced{transform:scale(1.06);}
+.hero-book-link.is-synced{transform:scale(1.2);transition:transform .4s ease;}
 @media (prefers-reduced-motion:reduce){ .hero-book-link{transition:none;} }
 </style>
 <script>
@@ -2817,13 +2817,13 @@
   function off(){ book.classList.remove('is-synced'); }
   [book,btn].forEach(function(el){
     el.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') on(); });
-    el.addEventListener('pointerleave',off);
+    el.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse') off(); });
     el.addEventListener('pointerdown',on);
-    el.addEventListener('pointerup',off);
     el.addEventListener('pointercancel',off);
     el.addEventListener('focus',function(){ if(el.matches(':focus-visible')) on(); });
     el.addEventListener('blur',off);
   });
+  window.addEventListener('pageshow',off);
 })();
 </script>
 </body>
