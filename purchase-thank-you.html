@@ -40,7 +40,9 @@
 
   h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6.4vw,50px);line-height:1.1;margin-bottom:18px;}
   .lead{font-size:16px;line-height:1.75;color:rgba(245,241,232,.78);margin-bottom:6px;}
-  .divider{display:block;width:min(240px,60%);height:auto;margin:30px auto;opacity:.9;}
+  .divider{display:block;width:46%;max-width:300px;height:3px;border-radius:999px;
+    margin:calc(30px + (min(240px,60%) * 50 / 668 - 3px) / 2) auto;
+    background:var(--gold);}
 
   .book{display:none;align-items:center;gap:16px;text-align:left;max-width:360px;margin:0 auto 30px;
     padding:14px 0;border-top:1px solid rgba(245,241,232,.12);border-bottom:1px solid rgba(245,241,232,.12);}
@@ -94,7 +96,7 @@
     <p class="lead">Your order was successfully completed.</p>
     <p class="lead">Thank you for choosing Beyond Pages and supporting our work.</p>
 
-    <img class="divider" src="assets/hero-divider.png" alt="" width="668" height="50">
+    <div class="divider" aria-hidden="true"></div>
 
     <!-- Filled in only when the redirect URL carries ?book=… (see CONFIG below) -->
     <div class="book" id="book" aria-live="polite">
