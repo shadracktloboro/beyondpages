@@ -30,6 +30,7 @@
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
   .legal-hero{background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:flex-start;text-align:left;padding:14px 16px;border-bottom:1px solid rgba(201,162,39,.25);}
   .legal-hero .brand-logo{display:block;height:38px;width:auto;max-width:none;}
+  .legal-hero .brand-logo-link{display:block;line-height:0;cursor:pointer;}
   @media(min-width:641px){.legal-hero{padding:16px 32px;}}
   .legal-hero .brand{font-family:var(--serif);font-weight:700;color:var(--gold-light);font-size:19px;letter-spacing:0.5px;}
   .back-wrap{max-width:640px;margin:0 auto;padding:26px 24px 0;}
@@ -110,7 +111,7 @@
 </style>
 </head>
 <body>
-<div class="legal-hero"><img class="brand-logo" src="assets/beyondpages-logo-transparent.png" alt="Beyond Pages" width="49" height="38"></div>
+<div class="legal-hero"><a class="brand-logo-link" href="index.html" aria-label="Beyond Pages - Back to Home"><img class="brand-logo" src="assets/beyondpages-logo-transparent.png" alt="Beyond Pages" width="49" height="38"></a></div>
 <div class="back-wrap"><a class="back-link" href="index.html"><svg class="back-chevron" viewBox="0 0 10 16" aria-hidden="true" focusable="false"><path d="M8 2 2 8l6 6"/></svg><span>Back to Home</span></a></div>
 
 <main class="support" id="support">
