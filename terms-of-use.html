@@ -33,6 +33,10 @@
   .back-link:hover{color:var(--teal);}
   .back-link{display:inline-flex;align-items:center;gap:16px;}
   .back-link .back-chevron{width:10px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+  .back-link{width:44px;height:44px;justify-content:center;gap:0;border-radius:50%;margin-top:-11px;margin-bottom:17px;color:#a8841a;background:rgba(255,255,255,.55);border:1px solid rgba(168,132,26,.35);box-shadow:0 8px 18px rgba(20,21,26,.16),0 2px 5px rgba(20,21,26,.12);-webkit-backdrop-filter:blur(10px) saturate(160%);backdrop-filter:blur(10px) saturate(160%);transition:color .2s,border-color .2s;}
+  .back-link:hover{border-color:rgba(168,132,26,.65);}
+  .back-link .back-chevron{stroke-width:2;}
+  .back-link span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .legal-body p{font-size:15.5px;color:var(--muted-dark);margin-bottom:20px;}
   .legal-body h2{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--ink);margin:36px 0 14px;}
   .legal-body a.inline-link{color:var(--teal);}
@@ -48,7 +52,7 @@
 </div>
 
 <div class="legal-body">
-  <a class="back-link" href="index.html"><svg class="back-chevron" viewBox="0 0 10 16" aria-hidden="true" focusable="false"><path d="M8 2 2 8l6 6"/></svg><span>Back to Home</span></a>
+  <a class="back-link" href="index.html" aria-label="Back to Home"><svg class="back-chevron" viewBox="0 0 10 16" aria-hidden="true" focusable="false"><path d="M8 2 2 8l6 6"/></svg><span>Home</span></a>
 
   <p>These Terms of Use ("Terms") govern your access to and use of the Beyond Pages website and store, operated by Shadrack Tloboro ("we," "us," or "our"). By visiting this site or purchasing our books and resources, you agree to these Terms. If you do not agree, please do not use this site.</p>
 
