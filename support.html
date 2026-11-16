@@ -110,6 +110,17 @@
     .support-amt{font-size:21px;padding:13px 0;}
   }
 
+  /* Laptop and desktop: two columns (story left, contribution box right). Phones and tablets unchanged. */
+  @media(min-width:992px){
+    .back-wrap{max-width:1164px;padding-left:32px;padding-right:32px;}
+    .support-inner{max-width:1100px;display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:repeat(5,auto) 1fr;column-gap:56px;align-items:start;text-align:left;}
+    .support-inner > *{grid-column:1;}
+    .support-inner .support-divider{margin:0 0 26px;}
+    .support-inner .support-lede{margin-left:0;margin-right:0;}
+    .support-inner .support-growth{margin-left:0;margin-right:0;}
+    .support-inner > .support-panel{grid-column:2;grid-row:1 / span 6;margin:0;position:sticky;top:30px;}
+  }
+
   .page-foot{background:var(--ink);color:rgba(245,241,232,.55);text-align:center;font-size:12.5px;padding:26px 24px;}
   .page-foot a{color:var(--gold-light);}
 </style>
