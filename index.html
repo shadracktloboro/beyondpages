@@ -2619,6 +2619,18 @@
     }
     .bp-consent-body .bp-prefs-row{ display:none; }
   }
+
+  /* Cookie banner refresh: rounded top corners, no floating strip / X button. */
+  .bp-consent-banner{ display:none !important; }
+  @media(max-width:559px){
+    .bp-consent-card{ border-radius:20px 20px 0 0; }
+  }
+  @media(min-width:900px){
+    .bp-consent-card{ border-radius:14px 14px 0 0; }
+    .bp-consent-body .bp-prefs-row{
+      display:block; flex:0 0 auto; margin:0 0 0 22px; white-space:nowrap;
+    }
+  }
 </style>
 
 <div id="bpConsentOverlay" class="bp-init-hidden">
