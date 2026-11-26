@@ -308,6 +308,7 @@
     transition:box-shadow .3s,border-color .2s,background .2s;
   }
   .btn-ghost-glow:hover{box-shadow:0 0 6px rgba(201,162,39,0.2),0 0 13px rgba(201,162,39,0.12);}
+  .btn-ghost-glow{border-radius:8px;} /* matches SUBSCRIBE button; shimmer follows via inherit */
 
   /* Spotify "Listen Now" - subtle gold shimmer travelling along the existing border */
   .btn-ghost-glow{position:relative;}
@@ -978,7 +979,7 @@
   }
 
   /* Subscribe form: white rounded email field with a compact gold button overlapping its right edge. */
-  .newsletter-form{position:relative;}
+  .newsletter-form{position:relative;margin-bottom:6px;}
   .newsletter-form input[type="email"]{
     background:#fbf9f4;color:var(--ink);
     border:1px solid rgba(12,13,16,.14);border-radius:8px;
@@ -987,7 +988,7 @@
   .newsletter-form input[type="email"]:focus{background:#fff;}
   .newsletter-form input[type="email"]::placeholder{color:rgba(12,13,16,.5);}
   .newsletter-form button{
-    position:absolute;top:9px;right:-8px;
+    position:absolute;top:9px;right:-4px;
     width:auto;height:45px;min-height:0;padding:0 22px;
     border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.28);
   }
