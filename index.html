@@ -696,6 +696,14 @@
   }
   .search-result-desc{font-size:12.5px;color:var(--muted);line-height:1.5;}
   .search-result mark{background:var(--gold);color:var(--ink);border-radius:2px;padding:0 1px;}
+  /* search thumbnails (additive: only affects results that carry an image) */
+  .search-result.has-thumb{flex-direction:row;align-items:center;gap:14px;}
+  .search-result-thumb{
+    flex:0 0 auto;width:46px;height:62px;display:flex;align-items:center;justify-content:center;
+    background:rgba(245,241,232,0.06);border:1px solid rgba(245,241,232,0.12);border-radius:4px;overflow:hidden;
+  }
+  .search-result-thumb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+  .search-result-body{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1;}
   .search-empty,.search-hint{
     padding:34px 20px;text-align:center;color:var(--muted);font-size:13.5px;line-height:1.6;
   }
@@ -1964,15 +1972,15 @@
     const index = [
       { title:"Home", type:"Page", desc:"Beyond Pages — books that turn insight into action, one deliberate page at a time.", url:"#__top" },
       { title:"Books", type:"Section", desc:"Featured titles — from insight to impact. Practical guidance for growth, purpose, and rising above modern struggle.", url:"#books" },
-      { title:"Pressure Creates Diamonds", type:"Book", desc:"Book by Shadrack Tloboro — $14.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/58dUi" },
-      { title:"Elevate Your Life", type:"Book", desc:"Book by Shadrack Tloboro — $12.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/lyqxg" },
-      { title:"Breakthrough Society", type:"Book", desc:"Book by Shadrack Tloboro — $14.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/vgIsf" },
-      { title:"The Quiet Shift", type:"Book", desc:"Book by Shadrack Tloboro — $19.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/Pl5So" },
-      { title:"The Sovereign Intuition", type:"Book", desc:"Book by Shadrack Tloboro — $18.00. Part of the Beyond Pages collection.", url:"https://payhip.com/b/qTNXm" },
-      { title:"Rooted in Purpose", type:"Book", desc:"Book by Shadrack Tloboro — $25.00. Part of the Beyond Pages collection.", url:"https://payhip.com/b/MfPXn" },
-      { title:"Financial Intelligence", type:"Book", desc:"Book by Shadrack Tloboro — $30.00. Part of the Beyond Pages collection.", url:"https://payhip.com/b/VhfQu" },
-      { title:"Self-Transformation & Achievement Bundle", type:"Bundle", desc:"Self-Transformation & Achievement Bundle — part of the Beyond Pages collection.", url:"https://payhip.com/b/sq5OS" },
-      { title:"The Conscious Wealth & Purpose Bundle", type:"Bundle", desc:"Bundle by Shadrack Tloboro — includes The Quiet Shift: 5 Mental Resets to Master Pressure, Silence Overthinking, and Reclaim Your Power; Rooted in Purpose: Growing Through Every Phase of Life; and Financial Intelligence: A Practical Blueprint for Smart Money Decisions and Financial Control. Part of the Beyond Pages collection.", url:"https://payhip.com/b/j2nVv" },
+      { title:"Pressure Creates Diamonds", type:"Book", kw:"shadrack tloboro author a roadmap for growth and self-discovery", img:"assets/search-thumbs/pressure-creates-diamonds.webp", desc:"Book by Shadrack Tloboro — $14.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/58dUi" },
+      { title:"Elevate Your Life", type:"Book", kw:"shadrack tloboro author the power of positive action", img:"assets/search-thumbs/elevate-your-life.webp", desc:"Book by Shadrack Tloboro — $12.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/lyqxg" },
+      { title:"Breakthrough Society", type:"Book", kw:"shadrack tloboro author guide to rising above modern struggles", img:"assets/search-thumbs/breakthrough-society.webp", desc:"Book by Shadrack Tloboro — $14.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/vgIsf" },
+      { title:"The Quiet Shift", type:"Book", kw:"shadrack tloboro author 5 mental resets pressure overthinking reclaim your power", img:"assets/search-thumbs/the-quiet-shift.webp", desc:"Book by Shadrack Tloboro — $19.99. Part of the Beyond Pages collection.", url:"https://payhip.com/b/Pl5So" },
+      { title:"The Sovereign Intuition", type:"Book", kw:"shadrack tloboro author mastering the art of divine connection", img:"assets/search-thumbs/the-sovereign-intuition.webp", desc:"Book by Shadrack Tloboro — $18.00. Part of the Beyond Pages collection.", url:"https://payhip.com/b/qTNXm" },
+      { title:"Rooted in Purpose", type:"Book", kw:"shadrack tloboro author growing through every phase of life", img:"assets/search-thumbs/rooted-in-purpose.webp", desc:"Book by Shadrack Tloboro — $25.00. Part of the Beyond Pages collection.", url:"https://payhip.com/b/MfPXn" },
+      { title:"Financial Intelligence", type:"Book", kw:"shadrack tloboro author practical blueprint smart money decisions financial control", img:"assets/search-thumbs/financial-intelligence.webp", desc:"Book by Shadrack Tloboro — $30.00. Part of the Beyond Pages collection.", url:"https://payhip.com/b/VhfQu" },
+      { title:"Self-Transformation & Achievement Bundle", type:"Bundle", kw:"shadrack tloboro author bundle pressure creates diamonds elevate your life breakthrough society", img:"assets/search-thumbs/bundle-self-transformation-achievement.webp", desc:"Self-Transformation & Achievement Bundle — part of the Beyond Pages collection.", url:"https://payhip.com/b/sq5OS" },
+      { title:"The Conscious Wealth & Purpose Bundle", type:"Bundle", kw:"shadrack tloboro author bundle the quiet shift rooted in purpose financial intelligence", img:"assets/search-thumbs/bundle-conscious-wealth-purpose.webp", desc:"Bundle by Shadrack Tloboro — includes The Quiet Shift: 5 Mental Resets to Master Pressure, Silence Overthinking, and Reclaim Your Power; Rooted in Purpose: Growing Through Every Phase of Life; and Financial Intelligence: A Practical Blueprint for Smart Money Decisions and Financial Control. Part of the Beyond Pages collection.", url:"https://payhip.com/b/j2nVv" },
       { title:"Browse the Full Catalog", type:"Page", desc:"Shop all books in the Beyond Pages collection on Payhip.", url:"https://payhip.com/shadracktloboro/collection/all" },
       { title:"Shop the Store", type:"Page", desc:"Shop the Beyond Pages store — books and more.", url:"https://payhip.com/shadracktloboro/collection/all" },
       { title:"Find Our Books Elsewhere", type:"Section", desc:"Every title, listed once — see which other retailers (Amazon, Apple Books, Storytel, Barnes & Noble) carry each book.", url:"#elsewhere" },
@@ -2042,6 +2050,7 @@
       const title = entry.title.toLowerCase();
       const desc = entry.desc.toLowerCase();
       const type = entry.type.toLowerCase();
+      const kw = (entry.kw || '').toLowerCase();
       let score = 0;
 
       if(title === q) score += 200;
@@ -2049,13 +2058,14 @@
       else if(title.includes(q)) score += 90;
 
       if(desc.includes(q)) score += 30;
+      if(kw && kw.includes(q)) score += 25;
       if(type.includes(q)) score += 15;
 
       const qWords = q.split(/\s+/).filter(Boolean);
       qWords.forEach(qw => {
         if(qw.length < 2) return;
         if(title.includes(qw)) score += 18;
-        else if(desc.includes(qw)) score += 6;
+        else if(desc.includes(qw) || (kw && kw.includes(qw))) score += 6;
         else {
           const candidates = (title + ' ' + desc).split(/\s+/);
           let best = Infinity;
@@ -2082,7 +2092,7 @@
         .map(entry => ({ entry, score: scoreEntry(entry, query) }))
         .filter(r => r.score > 0)
         .sort((a, b) => b.score - a.score)
-        .slice(0, 8);
+        .slice(0, 10);
       currentResults = scored.map(r => r.entry);
       activeIndex = currentResults.length ? 0 : -1;
       renderResults(query);
@@ -2107,12 +2117,20 @@
         item.setAttribute('role', 'option');
         item.id = 'search-result-' + i;
         item.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
-        item.innerHTML =
+        const textHtml =
           '<div class="search-result-top">' +
             '<span class="search-result-title">' + highlight(entry.title, query) + '</span>' +
             '<span class="search-result-type">' + entry.type + '</span>' +
           '</div>' +
           '<div class="search-result-desc">' + highlight(entry.desc, query) + '</div>';
+        if(entry.img){
+          item.classList.add('has-thumb');
+          item.innerHTML =
+            '<div class="search-result-thumb"><img src="' + entry.img + '" alt="' + entry.title.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + ' cover" width="46" height="62" loading="eager" decoding="async"></div>' +
+            '<div class="search-result-body">' + textHtml + '</div>';
+        } else {
+          item.innerHTML = textHtml;
+        }
         item.addEventListener('mouseenter', () => setActive(i));
         item.addEventListener('click', () => selectEntry(entry));
         resultsEl.appendChild(item);
